@@ -310,6 +310,7 @@ class MetadataController:
 
 	# Return a list of all netCDF files in "direrctory"
 	def get_nc_files(self, directory, dstFolder, regexFilter):
+		print "Gathering Files..."
 		if ".nc" in directory:
 			return [directory]
 		else:
@@ -364,6 +365,7 @@ class FileNameValidator:
 
 	# Return a list of all netCDF files in srcDir or just list of single fileName
 	def get_nc_files(self):
+		print "Gathering Files..."
 		if self.fileName and re.match(self.regexFilter, fileName):
 			return [self.fileName]
 		else:

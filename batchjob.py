@@ -28,10 +28,12 @@ def main():
 	variables = args.vars.split(",")
 
 	for var in variables:
+		print "Starting %s on variable %s" % ("\"File Name Correction\"" if args.operation == "fnf" else "\"Standard Name Correction\"", var)
 		newOut = "foo"
 		oldOut = "bar"
 		logNum = 1
 		while newOut != oldOut:
+			print "Pass #%d..." % (logNum)
 			oldOut = newOut
 			logFile = "%s_%s_%s_%d.log" % (args.model_id, operation, var, logNum)
 			call = "python nmmecorrector.py -o %s -s %s -d %s --filter .*/%s/.* -l %s %s %s %s %s" % (operation, srcDir, dstDir, var, logFile, "--fix" if args.fixFlag else "", "--fixUnits" if args.fixUnits else "", "--wait" if args.wait else "", "--hist" if args.histFlag else "")
