@@ -14,7 +14,6 @@ def main():
 	parser.add_argument("-v", "--vars",              dest="vars",        help="Variable Name (ex. -v g,hus,pr)")
 	parser.add_argument("--fix", "--fixFlag",        dest="fixFlag",     help="Flag to fix file names or only report possible changes (--fix = Fix File Names)",  action='store_true',  default=False)
 	parser.add_argument("--fixUnits",                dest="fixUnits",    help="Flag to fix units or only report possible changes (--fixUnits = Fix Units)",       action='store_true',  default=False)
-	parser.add_argument("-m", "--metadata",          dest="metadataFolder",  help = "Folder to dump original metadata to")
 	parser.add_argument("--hist", "--histFlag",      dest="histFlag",        help = "Flag to append changes to history metadata (--hist = append to history)",          action='store_true',  default=False)
 	parser.add_argument("--wait",                    dest="wait",            help = "Flag to wait for NCO operations to finish. This takes substantially longer but ensures completeness", action='store_true', default=False)
 
