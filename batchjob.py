@@ -28,7 +28,7 @@ def main():
 	variables = args.vars.split(",")
 
 	for var in variables:
-		print "Starting %s on variable %s" % ("\"File Name Correction\"" if args.operation == "fnf" else "\"Standard Name Correction\"", var)
+		print "Starting %s on variable %s" % ("\"File Name Correction\"" if args.operation == "fnf" else "\"Standard Name Correction\"", var.upper())
 		newOut = "foo"
 		oldOut = "bar"
 		logNum = 1
