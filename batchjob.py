@@ -33,7 +33,7 @@ def main():
 		oldOut = "bar"
 		logNum = 1
 		while newOut != oldOut:
-			print "Pass #%d..." % (logNum)
+			print "Pass %d" % (logNum)
 			oldOut = newOut
 			logFile = "%s_%s_%s_%d.log" % (args.model_id, operation, var, logNum)
 			call = "python nmmecorrector.py -o %s -s %s -d %s --filter .*/%s/.* -l %s %s %s %s %s" % (operation, srcDir, dstDir, var, logFile, "--fix" if args.fixFlag else "", "--fixUnits" if args.fixUnits else "", "--wait" if args.wait else "", "--hist" if args.histFlag else "")
@@ -44,11 +44,6 @@ def main():
 			newOut, err = p2.communicate()
 			p2.stdout.close()
 			logNum += 1
-
-			#CHECK FOR KILL
-			inp = raw_input()
-			if inp == "Q":
-				sys.exit()
 
 
 if __name__ == "__main__":
