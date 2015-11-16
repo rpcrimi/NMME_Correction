@@ -3,6 +3,29 @@ import re
 import sys
 import argparse
 
+def pad_hdr(inputFile, pad_size):
+	ncatted --hdr_pad 200 tas_day_GEOS-5_19830101_r10i1p1.nc -a foo,global,d,c,foobar
+	call = "ncatted -a foo,global,d,c, --hdr_pad %d %s" % (pad_size, inputFile)
+	p = subprocess.Popen(shlex.split(call.encode('ascii')))
+	returnCode = p.returncode
+
+	out = "None"
+	while out:
+		call = "/usr/sbin/lsof"
+		grep = "grep %s" % (inputFile)
+		p2 = subprocess.Popen(call, stdout=subprocess.PIPE)
+		p3 = subprocess.Popen(shlex.split(grep), stdin=p2.stdout, stdout=subprocess.PIPE)
+		p2.stdout.close()
+		out, err = p3.communicate()
+		p3.stdout.close()
+		returnCode = p.returncode
+
+	if returnCode == 1:
+		return False
+	else:
+		return True
+
+
 # Return a list of all netCDF files in "direrctory"
 def get_nc_files(directory, regexFilter):
 	print "Gathering Files..."
@@ -22,20 +45,23 @@ def get_nc_files(directory, regexFilter):
 
 def main():
 	parser = argparse.ArgumentParser(description='Pad Header Script')
-	parser.add_argument("-s", "--scrDir", dest="scrDir", help = "Directory to pad headers")
-	parser.add_argument("-f", "--filter", dest="filter", help = "Regex filter for filenames")
-
+	parser.add_argument("-s", "--scrDir",   dest="scrDir",   help = "Directory to pad headers")
+	parser.add_argument("-f", "--filter",   dest="filter",   help = "Regex filter for filenames")
+	parser.add_argument("-p", "--pad_size", dest="pad_size", help = "Pad size in bytes")
+	
 	args = parser.parse_args()
 	if(len(sys.argv) == 1):
 		parser.print_help()
 
-	if args.filter:
-		regexFilter = re.compile(args.filter)
 	else:
-		regexFilter = re.compile(".*")
+		if args.filter:
+			regexFilter = re.compile(args.filter)
+		else:
+			regexFilter = re.compile(".*")
 
-	l = get_nc_files(args.scrDir, regexFilter)
-	print l
+		files = get_nc_files(args.scrDir, regexFilter)
+		for f in files:
+			print pad_hdr(f, args.pad_size)
 
 if __name__ == "__main__":
 	main()
