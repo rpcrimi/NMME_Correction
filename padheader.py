@@ -1,5 +1,6 @@
 import os
 import re
+import sys
 import argparse
 
 # Return a list of all netCDF files in "direrctory"
@@ -27,7 +28,7 @@ def main():
 	args = parser.parse_args()
 	if(len(sys.argv) == 1):
 		parser.print_help()
-		
+
 	if args.filter:
 		regexFilter = re.compile(args.filter)
 	else:
