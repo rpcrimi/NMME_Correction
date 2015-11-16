@@ -178,7 +178,6 @@ def update_cell(spreadsheet, var, column, dictionary):
 	spreadsheet.update_cell(row, 3, dictionary["Realm"])
 	spreadsheet.update_cell(row, 4, dictionary["Frequencies"])
 
-
 def main():
 	parser = argparse.ArgumentParser(description='File Name Creator:\n All arguments should be comma seperated. For example, checking for variables "pr, hus, g" should be "-v g,hus,pr"', formatter_class=argparse.RawTextHelpFormatter)
 	parser.add_argument("-s", "--srcDir",      dest="srcDir",            help="Source Directory (IGNORE MODEL_ID) (ex. -s CCCMA/, UM-RSMAS/ not CCCMA/CanCM3 or UM-RSMAS/CCSM4)")
