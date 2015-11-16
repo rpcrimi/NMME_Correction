@@ -85,7 +85,7 @@ class MongoController:
 
 	# Store file info into FileNameChanges collection
 	def store_file_info(self, pathDict):
-		db.FileNameChanges.insert({"File Name": pathDict["fullPath"], "Info": pathDict, "Time": Logger.get_datetime()})
+		db.FileNameChanges.insert_one({"File Name": pathDict["fullPath"], "Info": pathDict, "Time": Logger.get_datetime()})
 
 # Class to handle logging calls
 class Logger:
@@ -244,7 +244,11 @@ class MetadataController:
 	# Edit the attribute in the metadata of file == inputFile
 	# histFlag == True means do not update history
 	def ncatted(self, att_nm, var_nm, mode, att_type, att_val, inputFile, histFlag, outputFile=""):
-		att_val = "'%s'" % att_val
+		if att_type == int:
+			att_type = "i"
+		else:
+			att_type = "c"
+			att_val = "'%s'" % att_val
 		call = "ncatted -a %s,%s,%s,%s,%s %s %s" % (att_nm, var_nm, mode, att_type, att_val, ("" if histFlag else "-h"), inputFile)
 		p = subprocess.Popen(shlex.split(call.encode('ascii')))
 		returnCode = p.returncode
@@ -259,6 +263,7 @@ class MetadataController:
 				p2.stdout.close()
 				out, err = p3.communicate()
 				p3.stdout.close()
+				returnCode = p.returncode
 
 		if returnCode == 1:
 			return False
@@ -388,7 +393,7 @@ class FileNameValidator:
 				institute_id_index              = splitFileName.index('NOAA-GFDL')
 				dictionary["institute_id"]      = splitFileName[institute_id_index]
 				dictionary["model_id"]          = splitFileName[institute_id_index+1]
-				dictionary["experiment_id"]     = splitFileName[institute_id_index+2]
+				dictionary["experiment_id"]     = int(splitFileName[institute_id_index+2])
 				dictionary["frequency"]         = splitFileName[institute_id_index+3]
 				dictionary["modeling_realm"]    = splitFileName[institute_id_index+4]
 				dictionary["variable"]          = splitFileName[institute_id_index+6]
@@ -396,7 +401,7 @@ class FileNameValidator:
 				institute_id_index              = splitFileName.index('CCCMA')
 				dictionary["institute_id"]      = splitFileName[institute_id_index]
 				dictionary["model_id"]          = splitFileName[institute_id_index+1]
-				dictionary["experiment_id"]     = splitFileName[institute_id_index+2]
+				dictionary["experiment_id"]     = int(splitFileName[institute_id_index+2])
 				dictionary["frequency"]         = splitFileName[institute_id_index+3]
 				dictionary["modeling_realm"]    = splitFileName[institute_id_index+4]
 				dictionary["variable"]          = splitFileName[institute_id_index+6]
@@ -404,7 +409,7 @@ class FileNameValidator:
 				institute_id_index              = splitFileName.index('UM-RSMAS')
 				dictionary["institute_id"]      = splitFileName[institute_id_index]
 				dictionary["model_id"]          = splitFileName[institute_id_index+1]
-				dictionary["experiment_id"]     = splitFileName[institute_id_index+2]
+				dictionary["experiment_id"]     = int(splitFileName[institute_id_index+2])
 				dictionary["frequency"]         = splitFileName[institute_id_index+3]
 				dictionary["modeling_realm"]    = splitFileName[institute_id_index+4]
 				dictionary["variable"]          = splitFileName[institute_id_index+5]
@@ -412,14 +417,14 @@ class FileNameValidator:
 				institute_id_index              = splitFileName.index('NASA-GMAO')
 				dictionary["institute_id"]      = splitFileName[institute_id_index]
 				dictionary["model_id"]          = splitFileName[institute_id_index+1]
-				dictionary["experiment_id"]     = splitFileName[institute_id_index+2]
+				dictionary["experiment_id"]     = int(splitFileName[institute_id_index+2])
 				dictionary["frequency"]         = splitFileName[institute_id_index+3]
 				dictionary["modeling_realm"]    = splitFileName[institute_id_index+4]
 				dictionary["variable"]          = splitFileName[institute_id_index+5]
 		
 		dictionary["project_id"]            = "NMME"
-		dictionary["startyear"]             = dictionary["experiment_id"][:4]
-		dictionary["startmonth"]            = dictionary["experiment_id"][4:6]
+		dictionary["startyear"]             = int(dictionary["experiment_id"][:4])
+		dictionary["startmonth"]            = int(dictionary["experiment_id"][4:6])
 
 		dictionary["fileName"]              = os.path.basename(fullPath)
 		dictionary["dirName"]               = os.path.dirname(fullPath)
@@ -435,7 +440,7 @@ class FileNameValidator:
 		else:
 			realization                     = self.metadataController.get_metadata(fullPath, None, "realization").lstrip('0')
 			dictionary["ensemble"]          = "r%si1p1" % realization
-		dictionary["realization"]           = dictionary["ensemble"].replace("r", "").split("i")[0]
+		dictionary["realization"]           = int(dictionary["ensemble"].replace("r", "").split("i")[0])
 
 
 		dictionary["rootFileName"]          = ".".join(fullPath.split(".")[:-1])
@@ -516,7 +521,7 @@ class FileNameValidator:
 		else:
 			return True
 
-	# Validate the metadata in file==fileName
+	# Validate the metadata in fileName
 	def validate_metadata(self, fileName):
 		pathDict = self.pathDicts[fileName]
 		flag = True
@@ -526,12 +531,12 @@ class FileNameValidator:
 			if meta in pathDict and metadata != pathDict[meta]:
 				if self.fixFlag:
 					# Update the metadata to path information
-					if not self.metadataController.ncatted(meta, "global", "d", "c", pathDict[meta], pathDict["fullPath"], ("-h" if self.histFlag else "")):
+					if not self.metadataController.ncatted(meta, "global", "d", type(pathDict[meta]), pathDict[meta], pathDict["fullPath"], ("-h" if self.histFlag else "")):
 						self.pathDicts[fileName]["I/O Error"] = True
-					if not self.metadataController.ncatted(meta, "global", "c", "c", pathDict[meta], pathDict["fullPath"], ("-h" if self.histFlag else "")):
+					if not self.metadataController.ncatted(meta, "global", "c", type(pathDict[meta]), pathDict[meta], pathDict["fullPath"], ("-h" if self.histFlag else "")):
 						self.pathDicts[fileName]["I/O Error"] = True
-					self.pathDicts[fileName]["Changes"].append(metadata + " --> " + pathDict[meta])
-				self.logger.log(pathDict["fileName"], [meta, metadata, pathDict[meta]], 'Metadata Fix')
+					self.pathDicts[fileName]["Changes"].append(metadata + " --> " + str(pathDict[meta]))
+				self.logger.log(pathDict["fileName"], [meta, metadata, str(pathDict[meta])], 'Metadata Fix')
 				flag = False
 
 		return flag
@@ -573,10 +578,9 @@ class FileNameValidator:
 		print "Starting Standard Name Validation on variable %s" % filt.strip(".*/").upper()
 		# Create list of all netCDF files in input
 		files = self.get_nc_files()
-		totalFiles = len(files)
 		i = 1
 		widgets = ['Percent Done: ', Percentage(), ' ', AnimatedMarker(), ' ', ETA()]
-		bar = ProgressBar(widgets=widgets, maxval=totalFiles).start()
+		bar = ProgressBar(widgets=widgets, maxval=len(files)).start()
 		# Fix each file in files list
 		for f in files:
 			# Set pathDicts[f] entry
@@ -859,10 +863,9 @@ class StandardNameValidator:
 		standardNamesUnits = self.metadataController.get_standard_names(self.srcDir or self.fileName, self.dstDir, self.regexFilter)
 		if standardNamesUnits:
 			# Number of files for use in progress bar
-			totalFiles = len(standardNamesUnits)
 			i = 1
 			widgets = ['Percent Done: ', Percentage(), ' ', AnimatedMarker(), ' ', ETA()]
-			bar = ProgressBar(widgets=widgets, maxval=totalFiles).start()
+			bar = ProgressBar(widgets=widgets, maxval=len(standardNamesUnits)).start()
 			# For each file in the list
 			for f in standardNamesUnits:
 				fileName   = f[0]
