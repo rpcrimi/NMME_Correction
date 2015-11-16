@@ -32,3 +32,6 @@ def main():
 
 	l = get_nc_files(args.scrDir, regexFilter)
 	print l
+
+if __name__ == "__main__":
+	main()
