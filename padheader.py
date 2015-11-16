@@ -2,6 +2,7 @@ import os
 import re
 import sys
 import argparse
+import subprocess
 
 def pad_hdr(inputFile, pad_size):
 	print inputFile
