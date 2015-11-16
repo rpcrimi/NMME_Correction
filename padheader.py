@@ -4,6 +4,8 @@ import sys
 import argparse
 
 def pad_hdr(inputFile, pad_size):
+	print os.path.getsize(inputFile)
+
 	ncatted --hdr_pad 200 tas_day_GEOS-5_19830101_r10i1p1.nc -a foo,global,d,c,foobar
 	call = "ncatted -a foo,global,d,c, --hdr_pad %d %s" % (pad_size, inputFile)
 	p = subprocess.Popen(shlex.split(call.encode('ascii')))
@@ -21,6 +23,7 @@ def pad_hdr(inputFile, pad_size):
 		returnCode = p.returncode
 
 	if returnCode == 1:
+		print os.path.getsize(inputFile)
 		return False
 	else:
 		return True
@@ -61,7 +64,7 @@ def main():
 
 		files = get_nc_files(args.scrDir, regexFilter)
 		for f in files:
-			print pad_hdr(f, args.pad_size)
+			pad_hdr(f, args.pad_size)
 
 if __name__ == "__main__":
 	main()
