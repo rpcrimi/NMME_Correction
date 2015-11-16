@@ -24,7 +24,10 @@ def main():
 	parser.add_argument("-s", "--scrDir", dest="scrDir", help = "Directory to pad headers")
 	parser.add_argument("-f", "--filter", dest="filter", help = "Regex filter for filenames")
 
-
+	args = parser.parse_args()
+	if(len(sys.argv) == 1):
+		parser.print_help()
+		
 	if args.filter:
 		regexFilter = re.compile(args.filter)
 	else:
