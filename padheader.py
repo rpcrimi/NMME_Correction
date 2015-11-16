@@ -7,7 +7,7 @@ import subprocess
 
 def pad_hdr(inputFile, pad_size):
 	print inputFile
-	print "Original Size: %s" % (os.path.getsize(inputFile))
+	print "Original Size:\t%s" % (os.path.getsize(inputFile))
 
 	call = "ncatted -a foo,global,d,c, --hdr_pad %s %s" % (pad_size, inputFile)
 	p = subprocess.Popen(shlex.split(call.encode('ascii')))
@@ -24,11 +24,7 @@ def pad_hdr(inputFile, pad_size):
 		p3.stdout.close()
 		returnCode = p.returncode
 
-	if returnCode == 1:
-		print "New Size: %s" % (os.path.getsize(inputFile))
-		return False
-	else:
-		return True
+	print "New Size:\t%s" % (os.path.getsize(inputFile))
 
 
 # Return a list of all netCDF files in "direrctory"
