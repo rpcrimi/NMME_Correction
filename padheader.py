@@ -4,9 +4,10 @@ import sys
 import argparse
 
 def pad_hdr(inputFile, pad_size):
-	print os.path.getsize(inputFile)
+	print inputFile
+	print "Original Size: %s" % (os.path.getsize(inputFile))
 
-	call = "ncatted -a foo,global,d,c, --hdr_pad %d %s" % (pad_size, inputFile)
+	call = "ncatted -a foo,global,d,c, --hdr_pad %s %s" % (pad_size, inputFile)
 	p = subprocess.Popen(shlex.split(call.encode('ascii')))
 	returnCode = p.returncode
 
@@ -22,7 +23,7 @@ def pad_hdr(inputFile, pad_size):
 		returnCode = p.returncode
 
 	if returnCode == 1:
-		print os.path.getsize(inputFile)
+		print "New Size: %s" % (os.path.getsize(inputFile))
 		return False
 	else:
 		return True
