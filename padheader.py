@@ -9,7 +9,7 @@ def pad_hdr(inputFile, pad_size):
 	print inputFile
 	print "Original Size:\t%s" % (os.path.getsize(inputFile))
 
-	call = "ncatted -a foo,global,d,c, --hdr_pad %s %s" % (pad_size, inputFile)
+	call = "ncatted -a foo,global,d,c, -h --hdr_pad %s %s" % (pad_size, inputFile)
 	p = subprocess.Popen(shlex.split(call.encode('ascii')))
 	returnCode = p.returncode
 
