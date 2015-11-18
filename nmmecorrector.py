@@ -534,11 +534,11 @@ class FileNameValidator:
 			if meta in pathDict and metadata != pathDict[meta]:
 				if self.fixFlag:
 					# Update the metadata to path information
-					if not self.metadataController.ncatted(meta, "global", "d", type(pathDict[meta]), pathDict[meta], pathDict["fullPath"], ("-h" if self.histFlag else "")):
+					if not self.metadataController.ncatted(meta, "global", "d", type(pathDict[meta]), pathDict[meta], pathDict["fullPath"], self.histFlag):
 						self.pathDicts[fileName]["I/O Error"] = True
-					if not self.metadataController.ncatted(meta, "global", "c", type(pathDict[meta]), pathDict[meta], pathDict["fullPath"], ("-h" if self.histFlag else "")):
+					if not self.metadataController.ncatted(meta, "global", "c", type(pathDict[meta]), pathDict[meta], pathDict["fullPath"], self.histFlag):
 						self.pathDicts[fileName]["I/O Error"] = True
-					self.pathDicts[fileName]["Changes"].append(metadata + " --> " + str(pathDict[meta]))
+					self.pathDicts[fileName]["Changes"].append(str(metadata) + " --> " + str(pathDict[meta]))
 				self.logger.log(pathDict["fileName"], [meta, metadata, str(pathDict[meta])], 'Metadata Fix')
 				flag = False
 
