@@ -228,7 +228,10 @@ class MetadataController:
 		# Format metadata by removing tabs, newlines, and semicolons and grabbing the value
 		if out:
 			metadata = out.replace("\t", "").replace("\n", "").replace(" ;", "").split(" = ")[1].strip('"')
-			return metadata
+			if type(metadata) == int:
+				return int(metadata)
+			else:
+				return metadata
 		else:
 			return "No Metadata"
 
@@ -527,7 +530,7 @@ class FileNameValidator:
 		flag = True
 		# For each desired value of metadata ==> Check against path information and update accordingly
 		for meta in ["frequency", "realization", "model_id", "modeling_realm", "institute_id", "startyear", "startmonth", "endyear", "endmonth", "experiment_id", "project_id"]:
-			metadata = self.metadataController.get_metadata(pathDict["fullPath"], None ,meta)
+			metadata = self.metadataController.get_metadata(pathDict["fullPath"], None , meta)
 			if meta in pathDict and metadata != pathDict[meta]:
 				if self.fixFlag:
 					# Update the metadata to path information
