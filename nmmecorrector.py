@@ -245,7 +245,7 @@ class MetadataController:
 		else: return out
 
 	# Edit the attribute in the metadata of file == inputFile
-	# histFlag == True means do not update history
+	# histFlag == True means update history
 	def ncatted(self, att_nm, var_nm, mode, att_type, att_val, inputFile, histFlag, outputFile=""):
 		if att_type == int:
 			att_type = "i"
@@ -273,7 +273,7 @@ class MetadataController:
 		else:
 			return True
 
-	# Rename the variable from oldName to newName in file==inputFile
+	# Rename the variable from oldName to newName in file == inputFile
 	def ncrename(self, oldName, newName, inputFile, histFlag, outputFile=""):
 		call = "ncrename -v %s,%s -d .%s,%s %s %s" % (oldName, newName, oldName, newName, ("" if histFlag else "-h"), inputFile)
 		p = subprocess.Popen(shlex.split(call.encode('ascii')))
@@ -341,7 +341,8 @@ class MetadataController:
 		standardNames = []
 		# Call ncdump and grep for :standard_name for each netCDF file in ncFolder
 		for f in self.get_nc_files(ncFolder, dstFolder, regexFilter):
-			p  = subprocess.Popen(['./ncdump.sh', f], stdout=subprocess.PIPE)
+			call = "ncdump -h %s" % (f) 
+			p = subprocess.Popen(shlex.split(call.encode('ascii')), stdout=subprocess.PIPE)
 			p2 = subprocess.Popen(shlex.split('grep :standard_name'), stdin=p.stdout, stdout=subprocess.PIPE)
 			p.stdout.close()
 			out, err = p2.communicate()
