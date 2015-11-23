@@ -32,7 +32,7 @@ spreadsheets['ocean']['mon'] = sheets.get_worksheet(3)
 
 class FileExistsValidator:
 	def __init__(self, srcDir, frequencies, variable, realms, dateRanges, fileOrder, ensembleRange, logFile, model_id=None):
-		self.srcDirs             = []
+		self.srcDirs = []
 		if model_id:
 			self.srcDirs.append(srcDir+model_id)
 			self.model_id = model_id
@@ -53,8 +53,8 @@ class FileExistsValidator:
 				self.initializationDates.append(str(dt.year) + format(dt.month, '02') + format(dt.day, '02'))
 
 		self.fileOrder         = fileOrder
-		numEnsembles           = self.ensembleRange[1] - self.ensembleRange[0] + 1
-		self.totalFiles        = float(len(self.initializationDates)*len(self.frequencies)*len(self.variable)*len(self.realms)*numEnsembles)
+		self.numEnsembles      = self.ensembleRange[1] - self.ensembleRange[0] + 1
+		self.totalFiles        = float(len(self.initializationDates)*len(self.frequencies)*len(self.variable)*len(self.realms)*self.numEnsembles)
 		self.totalFilesMissing = 0.0
 
 	def print_missing_info(self):
@@ -70,7 +70,7 @@ class FileExistsValidator:
 		folderIndex = self.fileOrder.index(folderType)
 		for i in range(folderIndex+1, len(self.fileOrder)):
 			missing *= len(eval('self.'+self.fileOrder[i]))
-		missing *= 10
+		missing *= self.numEnsembles
 		return missing
 
 	def get_model_ids(self, srcDir):
