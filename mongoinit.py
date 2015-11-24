@@ -110,6 +110,8 @@ def run():
 	StandardNameFixes.insert({"Incorrect Standard Name": "salinity",                                        "Var Name": "SO",        "Known Fix": "sea_water_salinity"})
 	StandardNameFixes.insert({"Incorrect Standard Name": "temperature",                                     "Var Name": "TO",        "Known Fix": "sea_water_temperature"})
 	StandardNameFixes.insert({"Incorrect Standard Name": "surface_meridional_stress_positive_to_the_south", "Var Name": "sty",       "Known Fix": "surface_meridional_stress_positive_to_the_north"})
+	StandardNameFixes.insert({"Incorrect Standard Name": "north_wind",                                      "Var Name": "va",        "Known Fix": "northward_wind"})
+	StandardNameFixes.insert({"Incorrect Standard Name": "east_wind",                                       "Var Name": "ua",        "Known Fix": "eastward_wind"})
 	#-----------------------------------------------------------------------------------------------------------
 
 

@@ -29,7 +29,6 @@ spreadsheets['atmos']['3hr'] = sheets.get_worksheet(1)
 spreadsheets['atmos']['6hr'] = sheets.get_worksheet(2)
 spreadsheets['ocean']['mon'] = sheets.get_worksheet(3)
 
-
 class FileExistsValidator:
 	def __init__(self, srcDir, frequencies, variable, realms, dateRanges, fileOrder, ensembleRange, logFile, model_id=None):
 		self.srcDirs = []
