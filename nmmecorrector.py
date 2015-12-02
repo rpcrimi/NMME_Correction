@@ -812,7 +812,7 @@ class StandardNameValidator:
 		if self.fileFlag:
 			if self.fixFlag:
 				# New path for copying file
-				dstdir = self.dstDir+os.path.dirname(fileName)
+				dstdir = self.dstDir+os.path.dirname(fileName).translate(None, "../")
 				# If path does not exist ==> create directory structure
 				if not os.path.exists(dstdir):
 					os.makedirs(dstdir)
