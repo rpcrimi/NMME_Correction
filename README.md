@@ -91,6 +91,14 @@ Arguments are the same as File Name and Standard Name Correction algorithms with
 - --filter argument is replaced with -v, --vars. The --vars argument should be comma separated variable names (g,pr,tas,tasmax).
 	- This will call the nmmecorrector script with each variable as the filter argument for each pass.
 
+### Example Usage:
 
+1. SSH into vetspubdev
+2. `cd` into /datazone/nmme/convert/NMME_Correction
+3. Locate desired institution folder. For example, from the current directory, CCCMA would be ../../output1/CCCMA
+4. `ls` the institution folder followed by model_id to find the experiment_ids (initialization dates) in the model
+5. After deciding your date ranges run:
+	`python batchjob.py -o snf -d <[[date_range],[date_range]]> -s <srcDir> -d <dstDir> --vars <var1>,<var2>,<var3> -l <log_file> --fix --wait`
+	NOTE: This command will filter for each given variable and wait for operations to finish.
 
 
