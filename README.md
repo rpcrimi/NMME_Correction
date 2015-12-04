@@ -27,8 +27,8 @@ Below is a description of each available argument for this module:
 3. Locate desired institution folder. For example, from the current directory, CCCMA would be ../../output1/CCCMA
 4. `ls` the institution folder followed by model_id to find the experiment_ids (dates) in the model
 5. After deciding your date ranges run:
-	`python fileexistsvalidator.py -d <[[date_range],[date_range]]> -f <frequencies> -r <realms> -s <srcDir> -m <model_id> -u`
-	NOTE: This command will update the Google Spreadsheet
+	- `python fileexistsvalidator.py -d <[[date_range],[date_range]]> -f <frequencies> -r <realms> -s <srcDir> -m <model_id> -u`
+	- NOTE: This command will update the Google Spreadsheet
 
 
 ## Standard Name Correction
@@ -55,8 +55,8 @@ Below is a description of each available argument for this module:
 3. Locate desired institution folder. For example, from the current directory, CCCMA would be ../../output1/CCCMA
 4. `ls` the institution folder followed by model_id to find the experiment_ids (initialization dates) in the model
 5. After deciding your date ranges run:
-	`python nmmecorrector.py -o snf -d <[[date_range],[date_range]]> -s <srcDir> -d <dstDir> --filter .*/<variable>/.* -l <log_file> --fix --wait`
-	NOTE: This command will filter for a given variable and wait for operations to finish.
+	- `python nmmecorrector.py -o snf -d <[[date_range],[date_range]]> -s <srcDir> -d <dstDir> --filter .*/<variable>/.* -l <log_file> --fix --wait`
+	- NOTE: This command will filter for a given variable and wait for operations to finish.
 
 
 ## File Name Correction
@@ -80,8 +80,8 @@ Below is a description of each available argument for this module:
 3. Locate desired institution folder. For example, from the current directory, CCCMA would be ../../output1/CCCMA
 4. `ls` the institution folder followed by model_id to find the experiment_ids (initialization dates) in the model
 5. After deciding your date ranges run:
-	`python nmmecorrector.py -o fnf -d <[[date_range],[date_range]]> -s <srcDir> --filter .*/<variable>/.* -l <log_file> --fix --wait`
-	NOTE: This command will filter for a given variable and wait for operations to finish.
+	- `python nmmecorrector.py -o fnf -d <[[date_range],[date_range]]> -s <srcDir> --filter .*/<variable>/.* -l <log_file> --fix --wait`
+	- NOTE: This command will filter for a given variable and wait for operations to finish.
 
 ## Batch Job
 
@@ -98,7 +98,7 @@ Arguments are the same as File Name and Standard Name Correction algorithms with
 3. Locate desired institution folder. For example, from the current directory, CCCMA would be ../../output1/CCCMA
 4. `ls` the institution folder followed by model_id to find the experiment_ids (initialization dates) in the model
 5. After deciding your date ranges run:
-	`python batchjob.py -o snf -d <[[date_range],[date_range]]> -s <srcDir> -d <dstDir> --vars <var1>,<var2>,<var3> -l <log_file> --fix --wait`
-	NOTE: This command will filter for each given variable and wait for operations to finish.
+	- `python batchjob.py -o snf -d <[[date_range],[date_range]]> -s <srcDir> -d <dstDir> --vars <var1>,<var2>,<var3> -l <log_file> --fix --wait`
+	- NOTE: This command will filter for each given variable and wait for operations to finish.
 
 
