@@ -31,9 +31,37 @@ Below is a description of each available argument for this module:
    NOTE: This command will update the Google Spreadsheet
 
 
+## Standard Name Correction
+
+This module will correct the standard names in NetCDF files to their CF standard. It uses MongoDB as an authoritative source for CF standards and common changes. For example, if the script comes across the variable "tasmax", it would check if the standard name matched the corresponding entry in the CF Standards Table (air_temperature). If it did not match, the script would check the Standard Name Fixes table for an suggested fix. For example, if the standard name in the file was "air temp", the script would use the following entry to change the standard name:
+	`StandardNameFixes.insert({"Incorrect Standard Name": "air temp", "Var Name": "tasmax", "Known Fix": "air_temperature"})`
+
+Below is a description of each available argument for this module:
+- -o, --operation:		Operation to run. In this case, use `-o snf`.
+- -s, --srcDir:			The base directory to run the script over (NOAA-GFDL/, NASA-GMAO/).
+- -f, --fileName:		Filename to run script over. Do not use if srcDir argument provided.
+- -d, --dstDir:			Folder to move fixed files to (finished/, foo/).
+- --filter:				File name filter (REGEX). Will only pull files that match regex. For example, `--filter .*r10i1p1.*` will fix all files with ensemble numbers == r10i1p1".
+- -m, --metadata:		OPTIONAL. Folder to dump original metadata to. This will run `ncdump -h` on each file and dump the data to corresponding files under this folder.
+- --fix, --fixFlag:		Flag to fix file names or only report possible changes (--fix: Fix Data = TRUE).
+- --hist, --histFlag:	Flag to append changes to history metadata (--hist: append to history = TRUE).
+- --fixUnits:			Flag to fix units (--fixUnits: fix units = TRUE).
+- --wait:				Flag to wait for NCO operations to finish. This takes substantially longer but ensures completeness
+
+## Example Usage:
+
+1. SSH into vetspubdev
+2. `cd` into /datazone/nmme/convert/NMME_Correction
+3. Locate desired institution folder. For example, from the current directory, CCCMA would be ../../output1/CCCMA
+4. `ls` the institution folder followed by model_id to find the experiment_ids (initialization dates) in the model
+5. After deciding your date ranges run:
+       `python nmmecorrector.py -o snf -d <[[date_range],[date_range]]> -s <srcDir> -d <dstDir> --filter .*/<variable>/.* -l <log_file> --fix --wait`
+       NOTE: This command will filter for a given variable and wait for operations to finish.
+
+
 ## File Name Correction
 
-This module will correct NetCDF file names and corresponding global attributes. This script uses the path of the file as the authoritative source of what contents are in the file. For example, the typical NMME file structure is institution-id/model-id/experiment-id/frequency/modeling-realm/variable. The script will use the information provided by this file structure to determine the name of the file and global attributes.
+This module will correct NetCDF file names and corresponding global attributes. It uses the path of the file as the authoritative source of what contents are in the file. For example, the typical NMME file structure is institution-id/model-id/experiment-id/frequency/modeling-realm/variable. The script will use the information provided by this file structure to determine the name of the file and global attributes.
 
 Below is a description of each available argument for this module:
 - -o, --operation:		Operation to run. In this case, use `-o fnf`.
@@ -41,8 +69,8 @@ Below is a description of each available argument for this module:
 - -f, --fileName:		Filename to run script over. Do not use if srcDir argument provided.
 - --filter:				File name filter (REGEX). Will only pull files that match regex. For example, `--filter .*r10i1p1.*` will fix all files with ensemble numbers == r10i1p1".
 - -m, --metadata:		OPTIONAL. Folder to dump original metadata to. This will run `ncdump -h` on each file and dump the data to corresponding files under this folder.
-- --fix, --fixFlag:		Flag to fix file names or only report possible changes (--fix = Fix Data).
-- --hist, --histFlag:	Flag to append changes to history metadata (--hist = append to history)
+- --fix, --fixFlag:		Flag to fix file names or only report possible changes (--fix: Fix Data = TRUE).
+- --hist, --histFlag:	Flag to append changes to history metadata (--hist: append to history = TRUE).
 - --wait:				Flag to wait for NCO operations to finish. This takes substantially longer but ensures completeness
 
 ### Example Usage:

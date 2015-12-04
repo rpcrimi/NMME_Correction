@@ -903,7 +903,7 @@ def main():
 	parser.add_argument("-o", "--op", "--operation",           dest="operation",       help = "Operation to run (initDB, resetDB, query, find_one, traverse_history, snf=standard names fix, fnf=file names fix)")
 	parser.add_argument("-s", "--src", "--srcDir",             dest="srcDir",          help = "Source Directory")
 	parser.add_argument("-f", "--fileName",                    dest="fileName",        help = "File Name for single file fix")
-	parser.add_argument("-d", "--dstDir",                      dest="dstDir",          help = "Folder to copy fixed files to")
+	parser.add_argument("-d", "--dstDir",                      dest="dstDir",          help = "Folder to move fixed files to")
 	parser.add_argument("-m", "--metadata",                    dest="metadataFolder",  help = "Folder to dump original metadata to")
 	parser.add_argument("-l", "--logFile",                     dest="logFile",         help = "File to log metadata changes to")
 	parser.add_argument("--filter",                            dest="filter",          help = "File name filter (REGEX). Will only pull files that match regex. For example --filter .*r10i1p1.* will fix all files with ensemble numbers == r10i1p1")
