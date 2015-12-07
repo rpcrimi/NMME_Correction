@@ -102,3 +102,20 @@ Arguments are the same as File Name and Standard Name Correction algorithms with
 	- NOTE: This command will filter for each given variable and wait for operations to finish.
 
 
+## Pad Header
+
+This module will pad the headers of NetCDF3 files such that further writes do not incur any rewriting of files. This is not necessary for NetCDF4 files as they do not need to be rewritten when their header grows.
+
+Below is a description of each available argument for this module:
+- -s, --srcDir:		The base diretory to run the script over (NOAA-GFDL/, NASA-GMAO/).
+- -f, --filter:		File name filter (REGEX). Will only pull files that match regex. For example, `--filter ".*/(pr|tas|tasmax|tasmin)/.*"` will fix all files with the variables pr, tas, tasmax, or tasmin.
+- -p, --pad_size:	Number of bytes to pad each files header with.
+
+### Example Usage:
+
+1. SSH into vetspubdev
+2. `cd` into /datazone/nmme/convert/NMME_Correction
+3. Locate desired institution folder. For example, from the current directory, CCCMA would be ../../output1/CCCMA
+5. After deciding which variables to pad, run:
+	- `python padheader.py -s ../NOAA-GFDL/ -f ".*/(pr|tas|tasmax|tasmin)/.*" -p 1000`
+	- NOTE: This will pad all files under NOAA-GFDL with variables pr, tas, tasmax, or tasmin with 1000 bytes of space.
