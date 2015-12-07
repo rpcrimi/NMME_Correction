@@ -64,14 +64,14 @@ Below is a description of each available argument for this module:
 This module will correct NetCDF file names and corresponding global attributes. It uses the path of the file as the authoritative source of what contents are in the file. For example, the typical NMME file structure is institution-id/model-id/experiment-id/frequency/modeling-realm/variable. The script will use the information provided by this file structure to determine the name of the file and global attributes.
 
 Below is a description of each available argument for this module:
-- -o, --operation:\t\tOperation to run. In this case, use `-o fnf`.
-- -s, --srcDir:\t\tThe base directory to run the script over (NOAA-GFDL/, NASA-GMAO/).
-- -f, --fileName:\t\tFilename to run script over. Do not use if srcDir argument provided.
-- --filter:\t\t\t\tFile name filter (REGEX). Will only pull files that match regex. For example, `--filter .*r10i1p1.*` will fix all files with ensemble numbers == r10i1p1".
-- -m, --metadata:\t\tOPTIONAL. Folder to dump original metadata to. This will run `ncdump -h` on each file and dump the data to corresponding files under this folder.
-- --fix, --fixFlag:\t\tFlag to fix file names or only report possible changes (--fix: Fix Data = TRUE).
-- --hist, --histFlag:\tFlag to append changes to history metadata (--hist: append to history = TRUE).
-- --wait:\t\t\t\tFlag to wait for NCO operations to finish. This takes substantially longer but ensures completeness
+- -o, --operation:		Operation to run. In this case, use `-o fnf`.
+- -s, --srcDir:			The base directory to run the script over (NOAA-GFDL/, NASA-GMAO/).
+- -f, --fileName:		Filename to run script over. Do not use if srcDir argument provided.
+- --filter:				File name filter (REGEX). Will only pull files that match regex. For example, `--filter .*r10i1p1.*` will fix all files with ensemble numbers == r10i1p1".
+- -m, --metadata:		OPTIONAL. Folder to dump original metadata to. This will run `ncdump -h` on each file and dump the data to corresponding files under this folder.
+- --fix, --fixFlag:		Flag to fix file names or only report possible changes (--fix: Fix Data = TRUE).
+- --hist, --histFlag:	Flag to append changes to history metadata (--hist: append to history = TRUE).
+- --wait:				Flag to wait for NCO operations to finish. This takes substantially longer but ensures completeness
 
 ### Example Usage:
 
