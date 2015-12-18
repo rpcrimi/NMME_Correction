@@ -25,6 +25,7 @@ def pad_hdr(inputFile, pad_size):
 
 	out = "None"
 	while out:
+		print out
 		call = "/usr/sbin/lsof"
 		grep = "grep %s" % (inputFile)
 		p2 = subprocess.Popen(call, stdout=subprocess.PIPE)
