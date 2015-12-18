@@ -13,7 +13,7 @@ def pad_hdr(inputFile, pad_size):
 	print "Original Size:\t%s" % (os.path.getsize(inputFile))
 
 	outputFile = "/datazone/nmme/convert_nc3_pad/" + inputFile.split("output1/")[-1]
-	call = "ncatted -a foo,global,d,c, -h --hdr_pad %s %s -o %s" % (pad_size, inputFile, outputFile )
+	call = "ncatted -a foo,global,d,c, -h --hdr_pad %s %s -o %s" % (pad_size, inputFile, outputFile)
 	p = subprocess.Popen(shlex.split(call.encode('ascii')))
 	returnCode = p.returncode
 
@@ -50,9 +50,9 @@ def get_nc_files(directory, regexFilter):
 
 def main():
 	parser = argparse.ArgumentParser(description='Pad Header Script')
-	parser.add_argument("-s", "--scrDir",   dest="scrDir",   help = "Directory to pad headers")
+	parser.add_argument("-s", "--scrDir",   dest="scrDir",   help="Directory to pad headers")
 	parser.add_argument("-d", "--dates",    dest="dates",    help="Date Ranges (NON-OCTAL FORMAT) (ex. 1982-01 to 1984-12 and 1990-01 to 1991-01 would be [[[1982,1],[1984,12]], [[1990,1],[1991,1]]]")
-	parser.add_argument("-p", "--pad_size", dest="pad_size", help = "Pad size in bytes")
+	parser.add_argument("-p", "--pad_size", dest="pad_size", help="Pad size in bytes (default = 2000)", default=2000)
 	
 	args = parser.parse_args()
 	if(len(sys.argv) == 1):
