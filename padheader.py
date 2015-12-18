@@ -2,6 +2,7 @@ import os
 import re
 import sys
 import ast
+import time
 import shlex
 import argparse
 import datetime
@@ -23,19 +24,8 @@ def pad_hdr(inputFile, pad_size):
 	p = subprocess.Popen(shlex.split(call.encode('ascii')))
 	returnCode = p.returncode
 
-	out = "None"
-	while out:
-		print out
-		call = "/usr/sbin/lsof"
-		grep = "grep %s" % (outputFile)
-		p2 = subprocess.Popen(call, stdout=subprocess.PIPE)
-		p3 = subprocess.Popen(shlex.split(grep), stdin=p2.stdout, stdout=subprocess.PIPE)
-		p2.stdout.close()
-		out, err = p3.communicate()
-		p3.stdout.close()
-		returnCode = p.returncode
+	time.sleep(1)
 
-	print outputFile
 	print "New Size:\t%s" % (os.path.getsize(outputFile))
 
 
