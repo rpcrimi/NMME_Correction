@@ -15,7 +15,7 @@ def pad_hdr(inputFile, pad_size):
 	dstFolder = "/datazone/nmme/convert_nc3_pad/"
 	for folder in inputFile.split("output1/")[-1].split("/"):
 		if ".nc" not in folder:
-			dstFolder += folder
+			dstFolder += folder + "/"
 			if not os.path.exists(dstFolder):
 				os.makedirs(dstFolder)
 	outputFile = "/datazone/nmme/convert_nc3_pad/" + inputFile.split("output1/")[-1]
