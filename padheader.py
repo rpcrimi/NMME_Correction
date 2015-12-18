@@ -22,9 +22,7 @@ def pad_hdr(inputFile, pad_size):
 	outputFile = "/datazone/nmme/convert_nc3_pad/" + inputFile.split("output1/")[-1]
 	call = "ncatted -a foo,global,d,c, -h --hdr_pad %s %s -o %s" % (pad_size, inputFile, outputFile)
 	p = subprocess.Popen(shlex.split(call.encode('ascii')))
-	returnCode = p.returncode
-
-	time.sleep(1)
+	returnCode = p.wait()
 
 	print "New Size:\t%s" % (os.path.getsize(outputFile))
 
