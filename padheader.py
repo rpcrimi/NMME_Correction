@@ -35,6 +35,7 @@ def pad_hdr(inputFile, pad_size):
 		p3.stdout.close()
 		returnCode = p.returncode
 
+	print outputFile
 	print "New Size:\t%s" % (os.path.getsize(outputFile))
 
 
