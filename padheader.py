@@ -12,6 +12,12 @@ def pad_hdr(inputFile, pad_size):
 	print inputFile
 	print "Original Size:\t%s" % (os.path.getsize(inputFile))
 
+	dstFolder = "/datazone/nmme/convert_nc3_pad/"
+	for folder in inputFile.split("output1/")[-1].split("/"):
+		if ".nc" not in folder:
+			dstFolder += folder
+			if not os.path.exists(dstFolder):
+				os.makedirs(dstFolder)
 	outputFile = "/datazone/nmme/convert_nc3_pad/" + inputFile.split("output1/")[-1]
 	call = "ncatted -a foo,global,d,c, -h --hdr_pad %s %s -o %s" % (pad_size, inputFile, outputFile)
 	p = subprocess.Popen(shlex.split(call.encode('ascii')))
