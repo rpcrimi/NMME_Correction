@@ -69,6 +69,7 @@ def main():
 
 		for initDate in initializationDates:
 			regexFilter = re.compile((".*/%s/.*") % initDate)
+			print r.pattern
 			files = get_nc_files(args.scrDir, regexFilter)
 			print files
 			return
