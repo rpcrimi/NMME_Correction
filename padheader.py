@@ -69,10 +69,7 @@ def main():
 
 		for initDate in initializationDates:
 			regexFilter = re.compile((".*/%s/.*") % initDate)
-			print regexFilter.pattern
 			files = get_nc_files(args.scrDir, regexFilter)
-			print files
-			return
 			for f in files:
 				pad_hdr(f, args.pad_size)
 
