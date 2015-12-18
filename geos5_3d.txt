@@ -1,0 +1,161 @@
+-------G--------
+MISSING VARIABLE: 
+../../output1/UM-RSMAS/CCSM4/20141101/day/atmos:
+['../../output1/UM-RSMAS/CCSM4/20141101/day/atmos/g']
+
+../../output1/UM-RSMAS/CCSM4/20141001/day/atmos:
+['../../output1/UM-RSMAS/CCSM4/20141001/day/atmos/g']
+
+../../output1/UM-RSMAS/CCSM4/20141201/day/atmos:
+['../../output1/UM-RSMAS/CCSM4/20141201/day/atmos/g']
+
+../../output1/UM-RSMAS/CCSM4/20131201/day/atmos:
+['../../output1/UM-RSMAS/CCSM4/20131201/day/atmos/g']
+
+../../output1/UM-RSMAS/CCSM4/20131001/day/atmos:
+['../../output1/UM-RSMAS/CCSM4/20131001/day/atmos/g']
+
+../../output1/UM-RSMAS/CCSM4/20131101/day/atmos:
+['../../output1/UM-RSMAS/CCSM4/20131101/day/atmos/g']
+
+
+MISSING ENSEMBLES: 
+../../output1/UM-RSMAS/CCSM4/20130101/day/atmos/g: ['r2i1p1']
+
+../../output1/UM-RSMAS/CCSM4/20130301/day/atmos/g: ['r5i1p1']
+
+
+
+-------HUS--------
+MISSING VARIABLE: 
+../../output1/UM-RSMAS/CCSM4/20141101/day/atmos:
+['../../output1/UM-RSMAS/CCSM4/20141101/day/atmos/hus']
+
+../../output1/UM-RSMAS/CCSM4/20141001/day/atmos:
+['../../output1/UM-RSMAS/CCSM4/20141001/day/atmos/hus']
+
+../../output1/UM-RSMAS/CCSM4/20141201/day/atmos:
+['../../output1/UM-RSMAS/CCSM4/20141201/day/atmos/hus']
+
+../../output1/UM-RSMAS/CCSM4/20131201/day/atmos:
+['../../output1/UM-RSMAS/CCSM4/20131201/day/atmos/hus']
+
+../../output1/UM-RSMAS/CCSM4/20131001/day/atmos:
+['../../output1/UM-RSMAS/CCSM4/20131001/day/atmos/hus']
+
+../../output1/UM-RSMAS/CCSM4/20131101/day/atmos:
+['../../output1/UM-RSMAS/CCSM4/20131101/day/atmos/hus']
+
+
+MISSING ENSEMBLES: 
+../../output1/UM-RSMAS/CCSM4/20130101/day/atmos/hus: ['r2i1p1']
+
+../../output1/UM-RSMAS/CCSM4/20130301/day/atmos/hus: ['r7i1p1', 'r8i1p1']
+
+../../output1/UM-RSMAS/CCSM4/20140301/day/atmos/hus: ['r3i1p1']
+
+
+
+-------TA--------
+MISSING VARIABLE: 
+../../output1/UM-RSMAS/CCSM4/20141101/day/atmos:
+['../../output1/UM-RSMAS/CCSM4/20141101/day/atmos/ta']
+
+../../output1/UM-RSMAS/CCSM4/20141001/day/atmos:
+['../../output1/UM-RSMAS/CCSM4/20141001/day/atmos/ta']
+
+../../output1/UM-RSMAS/CCSM4/20141201/day/atmos:
+['../../output1/UM-RSMAS/CCSM4/20141201/day/atmos/ta']
+
+../../output1/UM-RSMAS/CCSM4/20131201/day/atmos:
+['../../output1/UM-RSMAS/CCSM4/20131201/day/atmos/ta']
+
+../../output1/UM-RSMAS/CCSM4/20131001/day/atmos:
+['../../output1/UM-RSMAS/CCSM4/20131001/day/atmos/ta']
+
+../../output1/UM-RSMAS/CCSM4/20131101/day/atmos:
+['../../output1/UM-RSMAS/CCSM4/20131101/day/atmos/ta']
+
+
+MISSING ENSEMBLES: 
+../../output1/UM-RSMAS/CCSM4/19960201/day/atmos/ta: ['r3i1p1', 'r4i1p1', 'r5i1p1']
+
+../../output1/UM-RSMAS/CCSM4/20130301/day/atmos/ta: ['r5i1p1', 'r7i1p1']
+
+../../output1/UM-RSMAS/CCSM4/20010101/day/atmos/ta: ['r2i1p1']
+
+../../output1/UM-RSMAS/CCSM4/19950601/day/atmos/ta: ['r10i1p1']
+
+../../output1/UM-RSMAS/CCSM4/20140301/day/atmos/ta: ['r3i1p1']
+
+../../output1/UM-RSMAS/CCSM4/20040101/day/atmos/ta: ['r5i1p1']
+
+../../output1/UM-RSMAS/CCSM4/20130101/day/atmos/ta: ['r2i1p1']
+
+../../output1/UM-RSMAS/CCSM4/19991001/day/atmos/ta: ['r5i1p1']
+
+../../output1/UM-RSMAS/CCSM4/20080301/day/atmos/ta: ['r2i1p1', 'r3i1p1', 'r4i1p1', 'r5i1p1']
+
+
+
+-------UA--------
+MISSING VARIABLE: 
+../../output1/UM-RSMAS/CCSM4/20141101/day/atmos:
+['../../output1/UM-RSMAS/CCSM4/20141101/day/atmos/ua']
+
+../../output1/UM-RSMAS/CCSM4/20141001/day/atmos:
+['../../output1/UM-RSMAS/CCSM4/20141001/day/atmos/ua']
+
+../../output1/UM-RSMAS/CCSM4/20141201/day/atmos:
+['../../output1/UM-RSMAS/CCSM4/20141201/day/atmos/ua']
+
+../../output1/UM-RSMAS/CCSM4/20131201/day/atmos:
+['../../output1/UM-RSMAS/CCSM4/20131201/day/atmos/ua']
+
+../../output1/UM-RSMAS/CCSM4/20131001/day/atmos:
+['../../output1/UM-RSMAS/CCSM4/20131001/day/atmos/ua']
+
+../../output1/UM-RSMAS/CCSM4/20131101/day/atmos:
+['../../output1/UM-RSMAS/CCSM4/20131101/day/atmos/ua']
+
+
+MISSING ENSEMBLES: 
+../../output1/UM-RSMAS/CCSM4/20130101/day/atmos/ua: ['r4i1p1', 'r6i1p1', 'r7i1p1']
+
+../../output1/UM-RSMAS/CCSM4/19940201/day/atmos/ua: ['r7i1p1']
+
+../../output1/UM-RSMAS/CCSM4/20140301/day/atmos/ua: ['r3i1p1']
+
+../../output1/UM-RSMAS/CCSM4/20130301/day/atmos/ua: ['r7i1p1', 'r8i1p1']
+
+
+
+-------VA--------
+MISSING VARIABLE: 
+../../output1/UM-RSMAS/CCSM4/20141101/day/atmos:
+['../../output1/UM-RSMAS/CCSM4/20141101/day/atmos/va']
+
+../../output1/UM-RSMAS/CCSM4/20141001/day/atmos:
+['../../output1/UM-RSMAS/CCSM4/20141001/day/atmos/va']
+
+../../output1/UM-RSMAS/CCSM4/20141201/day/atmos:
+['../../output1/UM-RSMAS/CCSM4/20141201/day/atmos/va']
+
+../../output1/UM-RSMAS/CCSM4/20131201/day/atmos:
+['../../output1/UM-RSMAS/CCSM4/20131201/day/atmos/va']
+
+../../output1/UM-RSMAS/CCSM4/20131001/day/atmos:
+['../../output1/UM-RSMAS/CCSM4/20131001/day/atmos/va']
+
+../../output1/UM-RSMAS/CCSM4/20131101/day/atmos:
+['../../output1/UM-RSMAS/CCSM4/20131101/day/atmos/va']
+
+
+MISSING ENSEMBLES: 
+../../output1/UM-RSMAS/CCSM4/20130101/day/atmos/va: ['r2i1p1']
+
+../../output1/UM-RSMAS/CCSM4/20130301/day/atmos/va: ['r7i1p1']
+
+../../output1/UM-RSMAS/CCSM4/20140301/day/atmos/va: ['r6i1p1']
+
+

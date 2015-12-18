@@ -1,15 +1,19 @@
 import os
 import re
 import sys
+import ast
 import shlex
 import argparse
+import datetime
 import subprocess
+from dateutil import rrule
 
 def pad_hdr(inputFile, pad_size):
 	print inputFile
 	print "Original Size:\t%s" % (os.path.getsize(inputFile))
 
-	call = "ncatted -a foo,global,d,c, -h --hdr_pad %s %s" % (pad_size, inputFile)
+	outputFile = "/datazone/nmme/convert_nc3_pad/" + inputFile.split("output1/")[-1]
+	call = "ncatted -a foo,global,d,c, -h --hdr_pad %s %s -o %s" % (pad_size, inputFile, outputFile )
 	p = subprocess.Popen(shlex.split(call.encode('ascii')))
 	returnCode = p.returncode
 
@@ -24,7 +28,7 @@ def pad_hdr(inputFile, pad_size):
 		p3.stdout.close()
 		returnCode = p.returncode
 
-	print "New Size:\t%s" % (os.path.getsize(inputFile))
+	print "New Size:\t%s" % (os.path.getsize(outputFile))
 
 
 # Return a list of all netCDF files in "direrctory"
@@ -47,7 +51,7 @@ def get_nc_files(directory, regexFilter):
 def main():
 	parser = argparse.ArgumentParser(description='Pad Header Script')
 	parser.add_argument("-s", "--scrDir",   dest="scrDir",   help = "Directory to pad headers")
-	parser.add_argument("-f", "--filter",   dest="filter",   help = "Regex filter for filenames")
+	parser.add_argument("-d", "--dates",    dest="dates",    help="Date Ranges (NON-OCTAL FORMAT) (ex. 1982-01 to 1984-12 and 1990-01 to 1991-01 would be [[[1982,1],[1984,12]], [[1990,1],[1991,1]]]")
 	parser.add_argument("-p", "--pad_size", dest="pad_size", help = "Pad size in bytes")
 	
 	args = parser.parse_args()
@@ -55,14 +59,21 @@ def main():
 		parser.print_help()
 
 	else:
-		if args.filter:
-			regexFilter = re.compile(args.filter)
-		else:
-			regexFilter = re.compile(".*")
+		dateRanges = ast.literal_eval(args.dates)
+		initializationDates = []
+		for RANGE in dateRanges:
+			start = datetime.date(RANGE[0][0], RANGE[0][1], 1)
+			end   = datetime.date(RANGE[1][0], RANGE[1][1], 1)
+			for dt in rrule.rrule(rrule.MONTHLY, dtstart=start, until=end):
+				initializationDates.append(str(dt.year) + format(dt.month, '02') + format(dt.day, '02'))
 
-		files = get_nc_files(args.scrDir, regexFilter)
-		for f in files:
-			pad_hdr(f, args.pad_size)
+		for initDate in initializationDates:
+			regexFilter = re.compile((".*/%s/.*") % initDate)
+			files = get_nc_files(args.scrDir, regexFilter)
+			print files
+			return
+			for f in files:
+				pad_hdr(f, args.pad_size)
 
 if __name__ == "__main__":
 	main()
