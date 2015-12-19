@@ -9,6 +9,8 @@ import datetime
 import subprocess
 from dateutil import rrule
 
+sys.stdout.flush()
+
 def pad_hdr(inputFile, pad_size):
 	print inputFile
 	print "Original Size:\t%s" % (os.path.getsize(inputFile))
