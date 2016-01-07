@@ -463,7 +463,7 @@ class FileNameValidator:
 
 	# Return new file name based on path information
 	def get_new_filename(self, pathDict):
-		return pathDict["variable"]+"_"+pathDict["frequency"]+"_"+pathDict["model_id"]+"_"+pathDict["experiment_id"]+"_"+pathDict["ensemble"]+pathDict["startEnd"]+pathDict["extension"]
+		return pathDict["variable"]+"_"+pathDict["frequency"]+"_"+pathDict["model_id"]+"_"+str(pathDict["experiment_id"])+"_"+pathDict["ensemble"]+pathDict["startEnd"]+pathDict["extension"]
 
 	# Validate the variable provided in fileName
 	def validate_variable(self, fileName):
