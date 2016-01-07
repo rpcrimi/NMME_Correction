@@ -328,7 +328,8 @@ class MetadataController:
 				# Find all filenames with .nc type
 				for filename in files:
 					filename = os.path.join(root, filename)
-					if filename.endswith(('.nc', '.nc4')) and re.match(regexFilter, filename):
+					#if filename.endswith(('.nc', '.nc4')) and re.match(regexFilter, filename):
+					if filename.endswith(('.nc')) and re.match(regexFilter, filename):
 						dstFileName = dstFolder + filename
 						if not os.path.isfile(dstFileName):
 							# Add full path of netCDF file to matches list
@@ -384,7 +385,8 @@ class FileNameValidator:
 				# Find all filenames with .nc type
 				for filename in files:
 					filename = os.path.join(root, filename)
-					if filename.endswith(('.nc', '.nc4')) and re.match(self.regexFilter, filename):
+					#if filename.endswith(('.nc', '.nc4')) and re.match(self.regexFilter, filename):
+					if filename.endswith(('.nc')) and re.match(self.regexFilter, filename):
 							matches.append(filename)
 			return matches
 
