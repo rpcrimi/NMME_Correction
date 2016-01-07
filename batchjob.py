@@ -36,7 +36,7 @@ def main():
 			print "Pass %d" % (logNum)
 			oldOut = newOut
 			logFile = "%s_%s_%s_%d.log" % (args.model_id, operation, var.split(".*/")[-1], logNum)
-			call = "python nmmecorrector.py -o %s -s %s -d %s --filter .*/%s/.* -l %s %s %s %s %s" % (operation, srcDir, dstDir, var, logFile, "--fix" if args.fixFlag else "", "--fixUnits" if args.fixUnits else "", "--wait" if args.wait else "", "--hist" if args.histFlag else "")
+			call = "python nmmecorrector.py -o %s -s %s -d %s --filter .*/%s/.* -l %s %s %s %s %s" % (operation, srcDir, dstDir, var.split(".*/")[-1], logFile, "--fix" if args.fixFlag else "", "--fixUnits" if args.fixUnits else "", "--wait" if args.wait else "", "--hist" if args.histFlag else "")
 			p = os.system(call)
 			
 			grep = "grep DEBUG %s" % (logFile)
