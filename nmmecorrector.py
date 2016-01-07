@@ -579,7 +579,7 @@ class FileNameValidator:
 
 	# Validate the input's file names and metadata
 	def validate(self, filt=None):
-		print "Starting Standard Name Validation on variable %s" % filt.strip(".*/").upper()
+		print "Starting File Name Validation on variable %s" % filt.strip(".*/").upper()
 		# Create list of all netCDF files in input
 		files = self.get_nc_files()
 		i = 1
