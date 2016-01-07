@@ -427,6 +427,7 @@ class FileNameValidator:
 				dictionary["variable"]          = splitFileName[institute_id_index+5]
 		
 		dictionary["project_id"]            = "NMME"
+		print dictionary["experiment_id"]
 		dictionary["startyear"]             = int(dictionary["experiment_id"][:4])
 		dictionary["startmonth"]            = int(dictionary["experiment_id"][4:6])
 
