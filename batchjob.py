@@ -11,6 +11,7 @@ def main():
 	parser.add_argument("-s", "--srcDir",            dest="srcDir",      help="Source Directory (IGNORE MODEL_ID) (ex. -s CCCMA/, UM-RSMAS/ not CCCMA/CanCM3 or UM-RSMAS/CCSM4)")
 	parser.add_argument("-d", "--dstDir",            dest="dstDir",      help="Folder to copy fixed files to")
 	parser.add_argument("-v", "--vars",              dest="vars",        help="Variable Name (ex. -v g,hus,pr)")
+	parser.add_argument("-m", "--model_id",          dest="model_id",    help="Model ID for logfile")
 	parser.add_argument("--fix", "--fixFlag",        dest="fixFlag",     help="Flag to fix file names or only report possible changes (--fix = Fix File Names)",  action='store_true',  default=False)
 	parser.add_argument("--fixUnits",                dest="fixUnits",    help="Flag to fix units or only report possible changes (--fixUnits = Fix Units)",       action='store_true',  default=False)
 	parser.add_argument("--hist", "--histFlag",      dest="histFlag",    help = "Flag to append changes to history metadata (--hist = append to history)",          action='store_true',  default=False)
