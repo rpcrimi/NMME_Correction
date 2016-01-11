@@ -1,5 +1,7 @@
 import re
 import os
+import shlex
+import subprocess
 
 # Return a list of all netCDF files in "direrctory"
 def get_nc_files(directory, dstFolder, regexFilter):
@@ -23,4 +25,7 @@ r = re.compile(".*198[0-9].*/g")
 files = get_nc_files("../../convert_nc3_pad/NASA-GMAO/", "NONE", r)
 
 for f in files:
-	"ncatted -a history,global,d,c, -h %s" % (f)
+	call = "ncatted -a history,global,d,c, -h %s" % (f)
+	p = subprocess.Popen(shlex.split(call.encode('ascii')))
+	returnCode = p.returncode
+	print "%s\t%s" % (returnCode, f)
