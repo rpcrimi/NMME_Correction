@@ -21,7 +21,7 @@ def get_nc_files(directory, dstFolder, regexFilter):
 					matches.append(filename)
 	return matches
 
-r = re.compile(".*198[0-9].*/hus")
+r = re.compile(".*198[0-9].*/g")
 files = get_nc_files("../../convert_nc3_pad/NASA-GMAO/", "NONE", r)
 
 for f in files:
