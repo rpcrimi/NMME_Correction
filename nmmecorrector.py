@@ -228,7 +228,7 @@ class MetadataController:
 		# Format metadata by removing tabs, newlines, and semicolons and grabbing the value
 		if out:
 			metadata = out.replace("\t", "").replace("\n", "").replace(" ;", "").split(" = ")[1].strip('"')
-			if type(metadata) == int:
+			if metadata.isdigit():
 				return int(metadata)
 			else:
 				return metadata
