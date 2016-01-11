@@ -21,4 +21,6 @@ def get_nc_files(directory, dstFolder, regexFilter):
 
 r = re.compile(".*198[0-9].*/g")
 files = get_nc_files("../../convert_nc3_pad/NASA-GMAO/", "NONE", r)
-print files
+
+for f in files:
+	"ncatted -a history,global,d,c, -h %s" % (f)
