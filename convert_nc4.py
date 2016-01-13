@@ -6,10 +6,10 @@ import argparse
 import subprocess
 
 def convert_file(inputFile):
-	print inputFile
-	print "Original Size:\t%s" % (os.path.getsize(inputFile))
+	print "Original File:\t%s" % (outputFile)
 
 	outputFile = inputFile.split(".nc")[0] + ".nc4"
+	'''
 	call = "nccopy -k 4 -d 2 %s %s" % (inputFile, outputFile)
 	p = subprocess.Popen(shlex.split(call.encode('ascii')))
 	returnCode = p.returncode
@@ -24,8 +24,8 @@ def convert_file(inputFile):
 		out, err = p3.communicate()
 		p3.stdout.close()
 		returnCode = p.returncode
-
-	print "New Size:\t%s" % (os.path.getsize(outputFile))
+	'''
+	print "New File:\t%s" % (outputFile)
 
 
 # Return a list of all netCDF files in "direrctory"

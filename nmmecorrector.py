@@ -293,7 +293,6 @@ class MetadataController:
 		if returnCode == 1:
 			return False
 		else:
-
 			return True
 
 	# Dump the header of file in pathDict to same directory structure under defined metadataFolder

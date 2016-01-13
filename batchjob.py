@@ -1,8 +1,8 @@
-import argparse
 import os
 import sys
 import ast
 import shlex
+import argparse
 import subprocess
 
 def main():
