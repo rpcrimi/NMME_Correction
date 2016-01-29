@@ -12,10 +12,11 @@ def main():
 	parser.add_argument("-d", "--dstDir",            dest="dstDir",      help="Folder to copy fixed files to")
 	parser.add_argument("-v", "--vars",              dest="vars",        help="Variable Name (ex. -v g,hus,pr)")
 	parser.add_argument("-m", "--model_id",          dest="model_id",    help="Model ID for logfile")
+	parser.add_argument("--filter"                   dest="filter",      help="Regex filter for gathering files")
 	parser.add_argument("--fix", "--fixFlag",        dest="fixFlag",     help="Flag to fix file names or only report possible changes (--fix = Fix File Names)",  action='store_true',  default=False)
 	parser.add_argument("--fixUnits",                dest="fixUnits",    help="Flag to fix units or only report possible changes (--fixUnits = Fix Units)",       action='store_true',  default=False)
-	parser.add_argument("--hist", "--histFlag",      dest="histFlag",    help = "Flag to append changes to history metadata (--hist = append to history)",          action='store_true',  default=False)
-	parser.add_argument("--wait",                    dest="wait",        help = "Flag to wait for NCO operations to finish. This takes substantially longer but ensures completeness", action='store_true', default=False)
+	parser.add_argument("--hist", "--histFlag",      dest="histFlag",    help="Flag to append changes to history metadata (--hist = append to history)",          action='store_true',  default=False)
+	parser.add_argument("--wait",                    dest="wait",        help="Flag to wait for NCO operations to finish. This takes substantially longer but ensures completeness", action='store_true', default=False)
 
 
 	args = parser.parse_args()
@@ -36,7 +37,7 @@ def main():
 			print "Pass %d" % (logNum)
 			oldOut = newOut
 			logFile = "%s_%s_%s_%d.log" % (args.model_id, operation, var.split(".*/")[-1], logNum)
-			call = "python nmmecorrector.py -o %s -s %s -d %s --filter .*/%s/.* -l %s %s %s %s %s" % (operation, srcDir, dstDir, var.split(".*/")[-1], logFile, "--fix" if args.fixFlag else "", "--fixUnits" if args.fixUnits else "", "--wait" if args.wait else "", "--hist" if args.histFlag else "")
+			call = "python nmmecorrector.py -o %s -s %s -d %s --var %s --filter %s -l %s %s %s %s %s" % (operation, srcDir, dstDir, var, args.filter, logFile, "--fix" if args.fixFlag else "", "--fixUnits" if args.fixUnits else "", "--wait" if args.wait else "", "--hist" if args.histFlag else "")
 			p = os.system(call)
 			
 			grep = "grep DEBUG %s" % (logFile)

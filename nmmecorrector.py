@@ -315,26 +315,6 @@ class MetadataController:
 		# Return list without empty elements
 		return filter(None, out)
 
-	# Return a list of all netCDF files in "direrctory"
-	def get_nc_files(self, directory, dstFolder, regexFilter):
-		print "Gathering Files..."
-		if ".nc" in directory:
-			return [directory]
-		else:
-			matches = []
-			# Do a walk through input directory
-			for root, dirnames, files in os.walk(directory):
-				# Find all filenames with .nc type
-				for filename in files:
-					filename = os.path.join(root, filename)
-					#if filename.endswith(('.nc', '.nc4')) and re.match(regexFilter, filename):
-					if filename.endswith(('.nc')) and re.match(regexFilter, filename):
-						dstFileName = dstFolder + filename
-						if not os.path.isfile(dstFileName):
-							# Add full path of netCDF file to matches list
-							matches.append(filename)
-			return matches
-
 
 	# Return a list of filenames and corresponding standard names in "ncFolder"
 	def get_standard_names(self, ncFolder, dstFolder, regexFilter):
@@ -352,14 +332,17 @@ class MetadataController:
 
 # Class to validate file names and metadata
 class FileNameValidator:
-	def __init__(self, srcDir, fileName, regexFilter, metadataFolder, logger, fixFlag, histFlag, waitFlag):
+	def __init__(self, srcDir, fileName, var, regexFilter, metadataFolder, logger, fixFlag, histFlag, waitFlag):
 		if srcDir: 
 			self.srcDir   = srcDir
 			self.fileName = None
 		else:
 			self.srcDir   = None      
 			self.fileName = fileName
-
+		if var:
+			self.varFilter       = re.compile(".*/%s/.*" % var)
+		else:
+			self.varFilter       = re.compile(".*")
  		if regexFilter:
 			self.regexFilter     = re.compile(regexFilter)
 		else:
@@ -385,7 +368,7 @@ class FileNameValidator:
 				for filename in files:
 					filename = os.path.join(root, filename)
 					#if filename.endswith(('.nc', '.nc4')) and re.match(self.regexFilter, filename):
-					if filename.endswith(('.nc')) and re.match(self.regexFilter, filename):
+					if filename.endswith(('.nc')) and re.match(self.regexFilter, filename) and re.match(self.varFilter, filename):
 							matches.append(filename)
 			return matches
 
@@ -609,7 +592,7 @@ class FileNameValidator:
 		bar.finish()	
 
 class StandardNameValidator:
-	def __init__(self, srcDir, fileName, dstDir, regexFilter, metadataFolder, logger, fixFlag, fixUnits, histFlag, waitFlag):
+	def __init__(self, srcDir, fileName, dstDir, var, regexFilter, metadataFolder, logger, fixFlag, fixUnits, histFlag, waitFlag):
 		if srcDir: 
 			self.srcDir          = srcDir
 			self.fileName        = None
@@ -617,6 +600,10 @@ class StandardNameValidator:
 			self.srcDir          = None      
 			self.fileName        = fileName
 		self.dstDir              = dstDir
+		if var:
+			self.varFilter       = re.compile(".*/%s/.*" % var)
+		else:
+			self.varFilter       = re.compile(".*")
 		if regexFilter:
 			self.regexFilter     = re.compile(regexFilter)
 		else:
@@ -629,6 +616,26 @@ class StandardNameValidator:
 		self.fixUnits            = fixUnits
 		self.histFlag            = histFlag
 		self.pathDicts           = {}
+
+	# Return a list of all netCDF files in "direrctory"
+	def get_nc_files(self, directory, dstFolder):
+		print "Gathering Files..."
+		if ".nc" in directory:
+			return [directory]
+		else:
+			matches = []
+			# Do a walk through input directory
+			for root, dirnames, files in os.walk(directory):
+				# Find all filenames with .nc type
+				for filename in files:
+					filename = os.path.join(root, filename)
+					#if filename.endswith(('.nc', '.nc4')) and re.match(regexFilter, filename):
+					if filename.endswith(('.nc')) and re.match(self.regexFilter, filename) and re.match(self.varFilter, filename):
+						dstFileName = dstFolder + filename
+						if not os.path.isfile(dstFileName):
+							# Add full path of netCDF file to matches list
+							matches.append(filename)
+			return matches
 
 	# Save all path info to pathDicts[fullPath] entry
 	def get_path_info(self, fullPath):
@@ -865,7 +872,7 @@ class StandardNameValidator:
 	def validate(self, filt=None):
 		print "Starting Standard Name Validation on variable %s" % filt.strip(".*/").upper()
 		# (filename, standard_name, units) list of all files in ncFolder
-		standardNamesUnits = self.metadataController.get_standard_names(self.srcDir or self.fileName, self.dstDir, self.regexFilter)
+		standardNamesUnits = self.get_standard_names(self.srcDir or self.fileName, self.dstDir)
 		if standardNamesUnits:
 			# Number of files for use in progress bar
 			i = 1
@@ -907,6 +914,7 @@ def main():
 	parser.add_argument("-d", "--dstDir",                      dest="dstDir",          help = "Folder to move fixed files to")
 	parser.add_argument("-m", "--metadata",                    dest="metadataFolder",  help = "Folder to dump original metadata to")
 	parser.add_argument("-l", "--logFile",                     dest="logFile",         help = "File to log metadata changes to")
+	parser.add_argument("-v", "--var",                         dest="var",             help = "Variable to filter on (for batch job functionality)")
 	parser.add_argument("--filter",                            dest="filter",          help = "File name filter (REGEX). Will only pull files that match regex. For example --filter .*r10i1p1.* will fix all files with ensemble numbers == r10i1p1")
 	parser.add_argument("-q", "--query",                       dest="query",           help = "JSON Query")
 	parser.add_argument("-c", "-t", "--table", "--collection", dest="collection",      help = "Collection to query")
@@ -935,7 +943,7 @@ def main():
 			if (args.srcDir or args.fileName) and args.dstDir:
 				l = Logger(args.logFile)
 				l.set_logfile(args.srcDir or args.fileName)
-				v = StandardNameValidator(args.srcDir, args.fileName, args.dstDir, args.filter, args.metadataFolder, l, args.fixFlag, args.fixUnits ,args.histFlag, args.wait)
+				v = StandardNameValidator(args.srcDir, args.fileName, args.dstDir, args.var, args.filter, args.metadataFolder, l, args.fixFlag, args.fixUnits ,args.histFlag, args.wait)
 				v.validate(args.filter)
 			else:
 				parser.error("Source directory (-s, --src, --srcDir) or file name (-f, --fileName) and destination directory (-d, --dstDir) required for standard name fix")
@@ -945,7 +953,7 @@ def main():
 			if (args.srcDir or args.fileName):
 				l = Logger(args.logFile)
 				l.set_logfile(args.srcDir or args.fileName)
-				v = FileNameValidator(args.srcDir, args.fileName, args.filter, args.metadataFolder, l, args.fixFlag, args.histFlag, args.wait)
+				v = FileNameValidator(args.srcDir, args.fileName, args.var, args.filter, args.metadataFolder, l, args.fixFlag, args.histFlag, args.wait)
 				v.validate(args.filter)
 			else:
 				parser.error("Source directory (-s, --src, --srcDir) or file name (-f, --fileName) required for file name fix")
