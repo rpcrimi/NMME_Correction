@@ -24,7 +24,7 @@ def main():
 		parser.print_help()
 
 	operation = args.operation
-	srcDir = args.srcDir if args.srcDir[-1] == "/" else args.srcDir+"/"
+	srcDir = args.srcDir if args.srcDir[-1] == "/" else args.srcDir + "/"
 	dstDir = args.dstDir
 	variables = args.vars.split(",")
 
@@ -36,7 +36,7 @@ def main():
 		while newOut != oldOut:
 			print "Pass %d" % (logNum)
 			oldOut = newOut
-			logFile = "%s_%s_%s_%d.log" % (args.model_id, operation, var.split(".*/")[-1], logNum)
+			logFile = "%s_%s_%s_%d.log" % (args.model_id, operation, var, logNum)
 			call = "python nmmecorrector.py -o %s -s %s -d %s --var %s --filter %s -l %s %s %s %s %s" % (operation, srcDir, dstDir, var, args.filter, logFile, "--fix" if args.fixFlag else "", "--fixUnits" if args.fixUnits else "", "--wait" if args.wait else "", "--hist" if args.histFlag else "")
 			p = os.system(call)
 			

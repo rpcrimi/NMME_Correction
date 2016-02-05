@@ -562,8 +562,8 @@ class FileNameValidator:
 		return (varFlag and freqFlag and metadataFlag and fileFlag)
 
 	# Validate the input's file names and metadata
-	def validate(self, filt=None):
-		print "Starting File Name Validation on variable %s" % filt.strip(".*/").upper()
+	def validate(self, var=None):
+		print "Starting File Name Validation on variable %s" % var.upper()
 		# Create list of all netCDF files in input
 		files = self.get_nc_files()
 		i = 1
@@ -869,8 +869,8 @@ class StandardNameValidator:
 			self.estimate_var_name(var, standardName, fileName)
 		return False
 
-	def validate(self, filt=None):
-		print "Starting Standard Name Validation on variable %s" % filt.strip(".*/").upper()
+	def validate(self, var=None):
+		print "Starting Standard Name Validation on variable %s" % var.upper()
 		# (filename, standard_name, units) list of all files in ncFolder
 		standardNamesUnits = self.get_standard_names(self.srcDir or self.fileName, self.dstDir)
 		if standardNamesUnits:
@@ -944,7 +944,7 @@ def main():
 				l = Logger(args.logFile)
 				l.set_logfile(args.srcDir or args.fileName)
 				v = StandardNameValidator(args.srcDir, args.fileName, args.dstDir, args.var, args.filter, args.metadataFolder, l, args.fixFlag, args.fixUnits ,args.histFlag, args.wait)
-				v.validate(args.filter)
+				v.validate(args.var)
 			else:
 				parser.error("Source directory (-s, --src, --srcDir) or file name (-f, --fileName) and destination directory (-d, --dstDir) required for standard name fix")
 
@@ -954,7 +954,7 @@ def main():
 				l = Logger(args.logFile)
 				l.set_logfile(args.srcDir or args.fileName)
 				v = FileNameValidator(args.srcDir, args.fileName, args.var, args.filter, args.metadataFolder, l, args.fixFlag, args.histFlag, args.wait)
-				v.validate(args.filter)
+				v.validate(args.var)
 			else:
 				parser.error("Source directory (-s, --src, --srcDir) or file name (-f, --fileName) required for file name fix")
 
