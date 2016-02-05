@@ -317,10 +317,10 @@ class MetadataController:
 
 
 	# Return a list of filenames and corresponding standard names in "ncFolder"
-	def get_standard_names(self, ncFolder, dstFolder, regexFilter):
+	def get_standard_names(self, files):
 		standardNames = []
 		# Call ncdump and grep for :standard_name for each netCDF file in ncFolder
-		for f in self.get_nc_files(ncFolder, dstFolder, regexFilter):
+		for f in files:
 			call = "ncdump -h %s" % (f) 
 			p = subprocess.Popen(shlex.split(call.encode('ascii')), stdout=subprocess.PIPE)
 			p2 = subprocess.Popen(shlex.split('grep :standard_name'), stdin=p.stdout, stdout=subprocess.PIPE)
@@ -872,7 +872,8 @@ class StandardNameValidator:
 	def validate(self, var=None):
 		print "Starting Standard Name Validation on variable %s" % var.upper()
 		# (filename, standard_name, units) list of all files in ncFolder
-		standardNamesUnits = self.get_standard_names(self.srcDir or self.fileName, self.dstDir)
+		files = self.get_nc_files(self.srcDir, self.dstDir)
+		standardNamesUnits = self.metadataController.get_standard_names(files)
 		if standardNamesUnits:
 			# Number of files for use in progress bar
 			i = 1
