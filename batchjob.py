@@ -5,6 +5,9 @@ import shlex
 import argparse
 import subprocess
 
+sys.stdout.flush()
+
+
 def main():
 	parser = argparse.ArgumentParser(description='File Name Creator:\n All arguments should be comma seperated. For example, checking for variables "pr, hus, g" should be "-v g,hus,pr"', formatter_class=argparse.RawTextHelpFormatter)
 	parser.add_argument("-o", "--op", "--operation", dest="operation",   help="Operation to run (initDB, resetDB, query, find_one, traverse_history, snf=standard names fix, fnf=file names fix)")

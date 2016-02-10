@@ -54,11 +54,11 @@ def run():
 	CFVars.insert({"Variable": "Time",                                          "Var Name": "time",     "CF Standard Name": "time",                                            "Units": "s"})
 	CFVars.insert({"Variable": "Height",                                        "Var Name": "zh",       "CF Standard Name": "height",                                          "Units": "m"})
 	CFVars.insert({"Variable": "Precipitation Flux",                            "Var Name": "pr",       "CF Standard Name": "precipitation_flux",                              "Units": "kg m-2 s-1"})
-	CFVars.insert({"Variable": "Depth",                                         "Var Name": "lev",       "CF Standard Name": "depth",                                          "Units": "m"})
-	CFVars.insert({"Variable": "Sea-ice area fraction",                         "Var Name": "sic",       "CF Standard Name": "sea_ice_area_fraction",                          "Units": "1"})
-	CFVars.insert({"Variable": "Air pressure",                                  "Var Name": "plev",      "CF Standard Name": "air_pressure",                                   "Units": "Pa"})
-	CFVars.insert({"Variable": "Total Precipitation",                           "Var Name": "prlr",      "CF Standard Name": "lwe_precipitation_rate",                         "Units": "m s-1"})
-	CFVars.insert({"Variable": "Sea Water Temperature",                         "Var Name": "to",        "CF Standard Name": "sea_water_temperature",                          "Units": "K"})
+	CFVars.insert({"Variable": "Depth",                                         "Var Name": "lev",      "CF Standard Name": "depth",                                           "Units": "m"})
+	CFVars.insert({"Variable": "Sea-ice area fraction",                         "Var Name": "sic",      "CF Standard Name": "sea_ice_area_fraction",                           "Units": "1"})
+	CFVars.insert({"Variable": "Air pressure",                                  "Var Name": "plev",     "CF Standard Name": "air_pressure",                                    "Units": "Pa"})
+	CFVars.insert({"Variable": "Total Precipitation",                           "Var Name": "prlr",     "CF Standard Name": "lwe_precipitation_rate",                          "Units": "m s-1"})
+	CFVars.insert({"Variable": "Sea Water Temperature",                         "Var Name": "to",       "CF Standard Name": "sea_water_temperature",                           "Units": "K"})
 	CFVars.insert({"Variable": "Large scale precipitation",                     "Var Name": "precl",    "CF Standard Name": "stratiform_precipitation_flux",                   "Units": "kg m-2 s-1"})
 	CFVars.insert({"Variable": "Total runoff",                                  "Var Name": "mrro",     "CF Standard Name": "runoff_flux",                                     "Units": "kg m-2 s-1"})
 	
@@ -112,6 +112,14 @@ def run():
 	StandardNameFixes.insert({"Incorrect Standard Name": "surface_meridional_stress_positive_to_the_south", "Var Name": "sty",       "Known Fix": "surface_meridional_stress_positive_to_the_north"})
 	StandardNameFixes.insert({"Incorrect Standard Name": "north_wind",                                      "Var Name": "va",        "Known Fix": "northward_wind"})
 	StandardNameFixes.insert({"Incorrect Standard Name": "east_wind",                                       "Var Name": "ua",        "Known Fix": "eastward_wind"})
+	StandardNameFixes.insert({"Incorrect Standard Name": "volume_fraction_of_water_in_soil",                "Var Name": "mrsov",     "Known Fix": "volume_fraction_of_condensed_water_in_soil"})
+	StandardNameFixes.insert({"Incorrect Standard Name": "toa_outgoing_longwave_flux",                      "Var Name": "rlt",       "Known Fix": "toa_net_downward_longwave_flux"})
+	StandardNameFixes.insert({"Incorrect Standard Name": "surface_downward_x_stress",                       "Var Name": "stx",       "Known Fix": "surface_zonal_stress_positive_to_the_west"})
+	StandardNameFixes.insert({"Incorrect Standard Name": "surface_downward_y_stress",                       "Var Name": "sty",       "Known Fix": "surface_meridional_stress_positive_to_the_north"})
+	StandardNameFixes.insert({"Incorrect Standard Name": "atmosphere_mass_content_of_water",                "Var Name": "tqm",       "Known Fix": "total_column_vertically_integrated_water"})
+	StandardNameFixes.insert({"Incorrect Standard Name": "surface_net_downward_shortwave",                  "Var Name": "pr",        "Known Fix": "precipitation_flux"})
+
+
 	#-----------------------------------------------------------------------------------------------------------
 
 

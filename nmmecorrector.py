@@ -16,6 +16,8 @@ import getpass
 from progressbar import *
 from difflib import SequenceMatcher
 
+sys.stdout.flush()
+
 connection        = pymongo.MongoClient()
 db                = connection["Attribute_Correction"]
 CFVars            = db["CFVars"]
