@@ -118,6 +118,7 @@ def run():
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "surface_downward_y_stress",                       "Var Name": "sty",       "Known Fix": "surface_meridional_stress_positive_to_the_north"})
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "atmosphere_mass_content_of_water",                "Var Name": "tqm",       "Known Fix": "total_column_vertically_integrated_water"})
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "surface_net_downward_shortwave",                  "Var Name": "pr",        "Known Fix": "precipitation_flux"})
+	StandardNameFixes.insert_one({"Incorrect Standard Name": "temperature",                                     "Var Name": "ta",        "Known Fix": "air_temperature"})
 
 
 	#-----------------------------------------------------------------------------------------------------------
