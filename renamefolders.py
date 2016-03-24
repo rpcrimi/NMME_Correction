@@ -20,7 +20,9 @@ def main():
 			filename = os.path.join(root, filename)
 			if filename.endswith(('.nc')) and re.match(regexFilter, filename):
 				matches.append(filename)
-	print matches
+	
+	for file in matches:
+		print file.split(args.folderName+"/")[0]
 
 if __name__ == "__main__":
 	main()
