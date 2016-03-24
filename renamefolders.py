@@ -24,8 +24,8 @@ def main():
 	s = set(matches)
 	matches = list(s)
 	for file in matches:
-		originalFolder = folder + args.folderName
-		renamedFolder = folder + args.replacementName
+		originalFolder = file + args.folderName
+		renamedFolder = file + args.replacementName
 		print originalFolder
 		os.rename(originalFolder, renamedFolder)
 		print renamedFolder
