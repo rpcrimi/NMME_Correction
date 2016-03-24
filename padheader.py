@@ -12,6 +12,8 @@ from dateutil import rrule
 sys.stdout.flush()
 
 def pad_hdr(inputFile, pad_size):
+	sys.stdout.flush()
+
 	print inputFile
 	print "Original Size:\t%s" % (os.path.getsize(inputFile))
 
@@ -42,7 +44,7 @@ def get_nc_files(directory, regexFilter):
 			# Find all filenames with .nc type
 			for filename in files:
 				filename = os.path.join(root, filename)
-				if filename.endswith(('.nc', '.nc4')) and re.match(regexFilter, filename):
+				if filename.endswith('.nc') and re.match(regexFilter, filename):
 					matches.append(filename)
 		return matches
 
