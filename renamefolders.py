@@ -19,10 +19,7 @@ def main():
 		for filename in files:
 			filename = os.path.join(root, filename)
 			if filename.endswith(('.nc')) and re.match(regexFilter, filename):
-				dstFileName = dstFolder + filename
-				if not os.path.isfile(dstFileName):
-					# Add full path of netCDF file to matches list
-					matches.append(filename)
+				matches.append(filename)
 	print matches
 
 if __name__ == "__main__":
