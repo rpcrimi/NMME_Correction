@@ -25,6 +25,8 @@ def main():
 		folder = file.split(args.folderName+"/")[0]
 		originalFolder = folder + args.folderName
 		renamedFolder = folder + args.replacementName
+		print originalFolder
+		os.rename(originalFolder, renamedFolder)
 		print renamedFolder
 
 if __name__ == "__main__":
