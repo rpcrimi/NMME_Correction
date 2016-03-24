@@ -22,7 +22,10 @@ def main():
 				matches.append(filename)
 	
 	for file in matches:
-		print file.split(args.folderName+"/")[0]
+		folder = file.split(args.folderName+"/")[0]
+		originalFolder = folder + args.folderName
+		renamedFolder = folder + args.replacementName
+		print renamedFolder
 
 if __name__ == "__main__":
 	main()
