@@ -43,7 +43,7 @@ def run():
 	CFVars.insert_one({"Variable": "2m temperature",                                "Var Name": "tas",      "CF Standard Name": "air_temperature",                                 "Units": "K"})
 	CFVars.insert_one({"Variable": "10m wind (u)",                                  "Var Name": "uas",      "CF Standard Name": "eastward_wind",                                   "Units": "m s-1"})
 	CFVars.insert_one({"Variable": "10m wind (v)",                                  "Var Name": "vas",      "CF Standard Name": "northward_wind",                                  "Units": "m s-1"})
-	CFVars.insert_one({"Variable": "Water equivalent snow depth",                   "Var Name": "snowhlnd", "CF Standard Name": "water_equivalent_snow_depth",                     "Units": "m"})
+	CFVars.insert_one({"Variable": "Water equivalent snow depth",                   "Var Name": "snowhlnd", "CF Standard Name": "lwe_thickness_of_surface_snow_amount",            "Units": "m"})
 	CFVars.insert_one({"Variable": "Total soil moisture",                           "Var Name": "mrsov",    "CF Standard Name": "volume_fraction_of_condensed_water_in_soil",      "Units": "1"})
 	CFVars.insert_one({"Variable": "Surface stress (x)",                            "Var Name": "stx",      "CF Standard Name": "surface_zonal_stress_positive_to_the_west",       "Units": "Pa"})
 	CFVars.insert_one({"Variable": "Surface stress (y)",                            "Var Name": "sty",      "CF Standard Name": "surface_meridional_stress_positive_to_the_north", "Units": "Pa"})
