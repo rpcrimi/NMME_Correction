@@ -438,6 +438,8 @@ class FileNameValidator:
 			dictionary["endDate"]           = dictionary["rootFileName"].split("-")[-1]
 			dictionary["endyear"]           = dictionary["endDate"][:4]
 			dictionary["endmonth"]          = dictionary["endDate"][4:6]
+			print type(dictionary["experiment_id"])
+			print type(dictionary["endDate"])
 			dictionary["startEnd"]          = "_"+dictionary["experiment_id"] + "-" + dictionary["endDate"]
 		else:
 			dictionary["startEnd"]          = ""
@@ -631,7 +633,6 @@ class StandardNameValidator:
 				# Find all filenames with .nc type
 				for filename in files:
 					filename = os.path.join(root, filename)
-					#if filename.endswith(('.nc', '.nc4')) and re.match(regexFilter, filename):
 					if filename.endswith(('.nc')) and re.match(self.regexFilter, filename) and re.match(self.varFilter, filename):
 						dstFileName = dstFolder + filename
 						if not os.path.isfile(dstFileName):
