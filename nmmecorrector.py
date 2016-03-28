@@ -438,9 +438,7 @@ class FileNameValidator:
 			dictionary["endDate"]           = dictionary["rootFileName"].split("-")[-1]
 			dictionary["endyear"]           = dictionary["endDate"][:4]
 			dictionary["endmonth"]          = dictionary["endDate"][4:6]
-			print type(dictionary["experiment_id"])
-			print type(dictionary["endDate"])
-			dictionary["startEnd"]          = "_"+dictionary["experiment_id"] + "-" + dictionary["endDate"]
+			dictionary["startEnd"]          = "_"+str(dictionary["experiment_id"]) + "-" + dictionary["endDate"]
 		else:
 			dictionary["startEnd"]          = ""
 
