@@ -24,7 +24,7 @@ def convert_file(inputFile, dstDir):
 
 
 # Return a list of all netCDF files in "directory"
-def get_nc_files(directory, regexFilter):
+def get_nc_files(directory, dstDir, regexFilter):
 	print "Gathering Files..."
 	matches = []
 	# Do a walk through input directory
@@ -32,7 +32,11 @@ def get_nc_files(directory, regexFilter):
 		# Find all filenames with .nc type
 		for filename in files:
 			filename = os.path.join(root, filename)
-			if filename.endswith('.nc') and re.match(regexFilter, filename):
+			dstfilename = dstDir + filename.split("directory")[-1] + "4"
+			print filename
+			print dstfilename
+			return
+			if filename.endswith('.nc') and re.match(regexFilter, filename) and not os.path.isfile(:
 				matches.append(filename)
 	return matches
 
@@ -53,7 +57,7 @@ def main():
 		else:
 			regexFilter = re.compile(".*")
 
-		files = get_nc_files(args.scrDir, regexFilter)
+		files = get_nc_files(args.scrDir, args.dstDir, regexFilter)
 
 		i = 1
 		widgets = ['Percent Done: ', Percentage(), ' ', AnimatedMarker(), ' ', ETA()]
