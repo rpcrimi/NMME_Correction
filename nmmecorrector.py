@@ -699,7 +699,8 @@ class StandardNameValidator:
 
 		dictionary["rootFileName"]          = ".".join(fullPath.split(".")[:-1])
 		if not re.match(ensembleRegex, dictionary["rootFileName"].split("_")[-1]):
-			dictionary["endDate"]           = dictionary["rootFileName"][-8:]
+			dictionary["endDate"]           = dictionary["rootFileName"].split("-")[-1]
+			print dictionary["endDate"]
 			dictionary["endyear"]           = int(dictionary["endDate"][:4])
 			dictionary["endmonth"]          = int(dictionary["endDate"][4:6])
 			dictionary["startEnd"]          = "_"+dictionary["experiment_id"] + "-" + dictionary["endDate"]
