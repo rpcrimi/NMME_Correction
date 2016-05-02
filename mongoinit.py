@@ -62,6 +62,7 @@ def run():
 	CFVars.insert_one({"Variable": "Large scale precipitation",                     "Var Name": "precl",    "CF Standard Name": "stratiform_precipitation_flux",                   "Units": "kg m-2 s-1"})
 	CFVars.insert_one({"Variable": "Total runoff",                                  "Var Name": "mrro",     "CF Standard Name": "runoff_flux",                                     "Units": "kg m-2 s-1"})
 	CFVars.insert_one({"Variable": "Surface Runoff Flux",                           "Var Name": "mrros",    "CF Standard Name": "surface_runoff_flux",                             "Units": "kg m-2 s-1"})
+	CFVars.insert_one({"Variable": "Ocean Mixed Layer Thickness Defined by Sigma T","Var Name": "mlotst",   "CF Standard Name": "ocean_mixed_layer_thickness_defined_by_sigma_t",  "Units": "m"})
 	
 	# Not Verified
 	CFVars.insert_one({"Variable": "Fresh water flux",                              "Var Name": "fwf",      "CF Standard Name": "fresh_water_flux",                                "Units": "XXXXXX"})
