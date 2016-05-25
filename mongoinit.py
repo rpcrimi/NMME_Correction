@@ -121,6 +121,16 @@ def run():
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "atmosphere_mass_content_of_water",                "Var Name": "tqm",       "Known Fix": "total_column_vertically_integrated_water"})
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "surface_net_downward_shortwave",                  "Var Name": "pr",        "Known Fix": "precipitation_flux"})
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "temperature",                                     "Var Name": "ta",        "Known Fix": "air_temperature"})
+	StandardNameFixes.insert_one({"Incorrect Standard Name": "surface latent heat flux",                        "Var Name": "hflsd",     "Known Fix": "surface_downward_latent_heat_flux"})
+	StandardNameFixes.insert_one({"Incorrect Standard Name": "surface sensible heat flux",                      "Var Name": "hfssd",     "Known Fix": "surface_downward_sensible_heat_flux"})
+	StandardNameFixes.insert_one({"Incorrect Standard Name": "specific humidity",                               "Var Name": "hus",       "Known Fix": "specific_humidity"})
+	StandardNameFixes.insert_one({"Incorrect Standard Name": "total soil liquid water in total 15 columnn",     "Var Name": "mrsov",     "Known Fix": "volume_fraction_of_condensed_water_in_soil"})
+	StandardNameFixes.insert_one({"Incorrect Standard Name": "large scale precipitation rate",                  "Var Name": "precl",     "Known Fix": "stratiform_precipitation_flux"})
+	StandardNameFixes.insert_one({"Incorrect Standard Name": "air pressure at sea level",                       "Var Name": "psl",       "Known Fix": "air_pressure_at_sea_level"})
+	StandardNameFixes.insert_one({"Incorrect Standard Name": "net longwave flux at surface",                    "Var Name": "rls",       "Known Fix": "surface_net_downward_longwave_flux"})
+	StandardNameFixes.insert_one({"Incorrect Standard Name": "net longwave flux at top of model",               "Var Name": "rlt",       "Known Fix": "toa_net_downward_longwave_flux"})
+	StandardNameFixes.insert_one({"Incorrect Standard Name": "net solar flux at surface",                       "Var Name": "rss",       "Known Fix": "surface_net_downward_shortwave_flux"})
+	StandardNameFixes.insert_one({"Incorrect Standard Name": "net solar flux at top of model",                  "Var Name": "rst",       "Known Fix": "toa_net_downward_shortwave_flux"})
 
 
 	#-----------------------------------------------------------------------------------------------------------
@@ -152,6 +162,8 @@ def run():
 	VarNameFixes.insert_one({"Incorrect Var Name": "TA",        "CF Standard Name": "air_temperature",                                 "Known Fix": "ta"})
 	VarNameFixes.insert_one({"Incorrect Var Name": "runoff",    "CF Standard Name": "surface_runoff_flux",                             "Known Fix": "mrros"})
 	VarNameFixes.insert_one({"Incorrect Var Name": "snowhland", "CF Standard Name": "lwe_thickness_of_surface_snow_amount",            "Known Fix": "snowhlnd"})
+	VarNameFixes.insert_one({"Incorrect Var Name": "SHFLX",     "CF Standard Name": "surface sensible heat flux",                      "Known Fix": "hfssd"})
+	VarNameFixes.insert_one({"Incorrect Var Name": "PRECL",     "CF Standard Name": "large scale precipitation rate",                  "Known Fix": "precl"})
 
 	#-----------------------------------------------------------------------------------------------------------
 

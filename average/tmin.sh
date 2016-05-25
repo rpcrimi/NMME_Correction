@@ -1,8 +1,8 @@
 #!/bin/ksh 
 set -xe
 # NCO commands
-#module load nco/4.2.0-intel-12.0.4.191
-#module load ncl/6.2.0.intel
+module load nco/4.2.0
+module load ncl/6.2.0
 # home and I/O directories
 
 infile1=$1
