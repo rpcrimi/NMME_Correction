@@ -1,4 +1,4 @@
-#!/bin/ksh 
+#!/bin/bash 
 
 read YYYY MM DD <<<$(date +'%Y %m %d')
 echo $DD
