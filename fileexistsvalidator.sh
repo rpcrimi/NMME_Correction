@@ -1,4 +1,4 @@
-#!/bin/ksh 
+#!/bin/bash
 
 DD=$(date +%Y)_$(date +%d)_$(date +%m)
 
