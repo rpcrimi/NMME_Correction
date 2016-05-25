@@ -2,13 +2,13 @@
 
 DD=$(date +%Y)_$(date +%d)_$(date +%m)
 
-mkdir cron_logfiles/CESM1/logs_$DD/
-mkdir cron_logfiles/GEOS-5/logs_$DD/
-mkdir cron_logfiles/CCSM4/logs_$DD/
-mkdir cron_logfiles/FLORB-01/logs_$DD/
-mkdir cron_logfiles/CanCM3/logs_$DD/
-mkdir cron_logfiles/CanCM4/logs_$DD/
-mkdir cron_logfiles/CFSV2-2011/logs_$DD/
+mkdir /datazone/nmme/convert_final/NMME_Correction/cron_logfiles/CESM1/logs_$DD/
+mkdir /datazone/nmme/convert_final/NMME_Correction/cron_logfiles/GEOS-5/logs_$DD/
+mkdir /datazone/nmme/convert_final/NMME_Correction/cron_logfiles/CCSM4/logs_$DD/
+mkdir /datazone/nmme/convert_final/NMME_Correction/cron_logfiles/FLORB-01/logs_$DD/
+mkdir /datazone/nmme/convert_final/NMME_Correction/cron_logfiles/CanCM3/logs_$DD/
+mkdir /datazone/nmme/convert_final/NMME_Correction/cron_logfiles/CanCM4/logs_$DD/
+mkdir /datazone/nmme/convert_final/NMME_Correction/cron_logfiles/CFSV2-2011/logs_$DD/
 
 
 #python fileexistsvalidator.py -s ../../output1/NCAR/ -m CESM1 -f day -d [[[1980,1],[2010,12]]] -r atmos -l cron_logfiles/CESM1/logs_$DD/ -u
