@@ -1,5 +1,4 @@
 #!/bin/ksh 
-set -xe
 
 read YYYY MM DD <<<$(date +'%Y %m %d')
 echo $DD
