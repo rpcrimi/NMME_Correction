@@ -131,6 +131,8 @@ def run():
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "net longwave flux at top of model",               "Var Name": "rlt",       "Known Fix": "toa_net_downward_longwave_flux"})
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "net solar flux at surface",                       "Var Name": "rss",       "Known Fix": "surface_net_downward_shortwave_flux"})
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "net solar flux at top of model",                  "Var Name": "rst",       "Known Fix": "toa_net_downward_shortwave_flux"})
+	StandardNameFixes.insert_one({"Incorrect Standard Name": "zonal surface stress",                            "Var Name": "stx",       "Known Fix": "surface_zonal_stress_positive_to_the_west"})
+	StandardNameFixes.insert_one({"Incorrect Standard Name": "meridional surface stress",                       "Var Name": "sty",       "Known Fix": "surface_meridional_stress_positive_to_the_north"})
 
 
 	#-----------------------------------------------------------------------------------------------------------
@@ -164,6 +166,8 @@ def run():
 	VarNameFixes.insert_one({"Incorrect Var Name": "snowhland", "CF Standard Name": "lwe_thickness_of_surface_snow_amount",            "Known Fix": "snowhlnd"})
 	VarNameFixes.insert_one({"Incorrect Var Name": "SHFLX",     "CF Standard Name": "surface sensible heat flux",                      "Known Fix": "hfssd"})
 	VarNameFixes.insert_one({"Incorrect Var Name": "PRECL",     "CF Standard Name": "large scale precipitation rate",                  "Known Fix": "precl"})
+	VarNameFixes.insert_one({"Incorrect Var Name": "TASMAX",    "CF Standard Name": "air_temperature",                                 "Known Fix": "tasmax"})
+	VarNameFixes.insert_one({"Incorrect Var Name": "TASMIN",    "CF Standard Name": "air_temperature",                                 "Known Fix": "tasmin"})
 
 	#-----------------------------------------------------------------------------------------------------------
 
