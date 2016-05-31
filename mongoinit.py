@@ -133,6 +133,9 @@ def run():
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "net solar flux at top of model",                  "Var Name": "rst",       "Known Fix": "toa_net_downward_shortwave_flux"})
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "zonal surface stress",                            "Var Name": "stx",       "Known Fix": "surface_zonal_stress_positive_to_the_west"})
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "meridional surface stress",                       "Var Name": "sty",       "Known Fix": "surface_meridional_stress_positive_to_the_north"})
+	StandardNameFixes.insert_one({"Incorrect Standard Name": "eastward wind",                                   "Var Name": "ua",        "Known Fix": "eastward_wind"})
+	StandardNameFixes.insert_one({"Incorrect Standard Name": "northward wind",                                  "Var Name": "va",        "Known Fix": "northward_wind"})
+	StandardNameFixes.insert_one({"Incorrect Standard Name": "surface temperature",                             "Var Name": "ts",        "Known Fix": "surface_temperature"})
 
 
 	#-----------------------------------------------------------------------------------------------------------
@@ -168,6 +171,10 @@ def run():
 	VarNameFixes.insert_one({"Incorrect Var Name": "PRECL",     "CF Standard Name": "large scale precipitation rate",                  "Known Fix": "precl"})
 	VarNameFixes.insert_one({"Incorrect Var Name": "TASMAX",    "CF Standard Name": "air_temperature",                                 "Known Fix": "tasmax"})
 	VarNameFixes.insert_one({"Incorrect Var Name": "TASMIN",    "CF Standard Name": "air_temperature",                                 "Known Fix": "tasmin"})
+	VarNameFixes.insert_one({"Incorrect Var Name": "TS",        "CF Standard Name": "surface temperature",                             "Known Fix": "ts"})
+	VarNameFixes.insert_one({"Incorrect Var Name": "UA",        "CF Standard Name": "eastward wind",                                   "Known Fix": "ua"})
+	VarNameFixes.insert_one({"Incorrect Var Name": "VA",        "CF Standard Name": "northward wind",                                  "Known Fix": "va"})
+	VarNameFixes.insert_one({"Incorrect Var Name": "STY",       "CF Standard Name": "surface_meridional_stress_positive_to_the_north", "Known Fix": "sty"})
 
 	#-----------------------------------------------------------------------------------------------------------
 
