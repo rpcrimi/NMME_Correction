@@ -2,13 +2,13 @@
 # NCO commands used: ncrename, ncea, ncecat, ncra, ncwa
 # This script fixes the number of records processed to 299 days. Since data are every 6h, that is 4x per day: 299x4= 1196 records
 set -xe
+
 inpday=19820101
 nrecords=1196
 var='tasmin'
 
 # work directory
-tmpdir=/glade/p/work/rcrimi/tmp
-mkdir -p $tmpdir
+tmpdir=/glade/u/home/rcrimi/average
 datadir=/glade/u/home/mpena/average
 outputs=/glade/u/home/rcrimi/average
 
@@ -32,8 +32,8 @@ outputs=/glade/u/home/rcrimi/average
    if [ $? -ne 0 ] ; then
      echo "ERROR: Subsetting failed for subsetting of $var.$inpday"
      exit 8
-#   else
-#     rm -f $tmpdir/foo?.nc4
+   else
+     rm -f $tmpdir/foo?.nc4
    fi
 
    # 3. Adding the variable time
@@ -44,8 +44,8 @@ outputs=/glade/u/home/rcrimi/average
    if [ $? -ne 0 ] ; then
      echo "ERROR: Adding Variable Time failed"
      exit 8
-#   else
-#     rm -f $tmpdir/goo?.nc4
+   else
+     rm -f $tmpdir/goo?.nc4
    fi
 
    # 4. find min or max
@@ -53,8 +53,8 @@ outputs=/glade/u/home/rcrimi/average
    if [ $? -ne 0 ] ; then
      echo "ERROR: Getting min/max/average failed for $var.$day"
      exit 8
-#   else
-#     rm -f $tmpdir/hoo?.nc4
+   else
+     rm -f $tmpdir/hoo?.nc4
    fi
 
    # 5. Remove "time" variable to the output
@@ -62,8 +62,12 @@ outputs=/glade/u/home/rcrimi/average
    if [ $? -ne 0 ] ; then
      echo "ERROR: Removing Time variable failed for $var.$inpday"
      exit 8
-#   else
-#     rm -f $tmpdir/output1.nc4
+   else
+     rm -f $tmpdir/output1.nc4
    fi
+
+   # 6. Rename the variable forecast_time to time
+   ncrename -h -O -v forecast_time,time $outputs/$var.$inpday.min.daily.nc4
+
 
 echo "task completed"
