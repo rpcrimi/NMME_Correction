@@ -136,6 +136,7 @@ def run():
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "eastward wind",                                   "Var Name": "ua",        "Known Fix": "eastward_wind"})
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "nortward wind",                                   "Var Name": "va",        "Known Fix": "northward_wind"})
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "surface temperature",                             "Var Name": "ts",        "Known Fix": "surface_temperature"})
+	StandardNameFixes.insert_one({"Incorrect Standard Name": "sea_ice_extent_cell_descriptor",                  "Var Name": "sic",       "Known Fix": "sea_ice_area_fraction"})
 
 
 	#-----------------------------------------------------------------------------------------------------------
@@ -173,8 +174,9 @@ def run():
 	VarNameFixes.insert_one({"Incorrect Var Name": "TASMIN",    "CF Standard Name": "air_temperature",                                 "Known Fix": "tasmin"})
 	VarNameFixes.insert_one({"Incorrect Var Name": "TS",        "CF Standard Name": "surface temperature",                             "Known Fix": "ts"})
 	VarNameFixes.insert_one({"Incorrect Var Name": "UA",        "CF Standard Name": "eastward wind",                                   "Known Fix": "ua"})
-	VarNameFixes.insert_one({"Incorrect Var Name": "VA",        "CF Standard Name": "nortward wind",                                  "Known Fix": "va"})
+	VarNameFixes.insert_one({"Incorrect Var Name": "VA",        "CF Standard Name": "nortward wind",                                   "Known Fix": "va"})
 	VarNameFixes.insert_one({"Incorrect Var Name": "STY",       "CF Standard Name": "surface_meridional_stress_positive_to_the_north", "Known Fix": "sty"})
+	VarNameFixes.insert_one({"Incorrect Var Name": "ext",       "CF Standard Name": "sea_ice_extent_cell_descriptor",                  "Known Fix": "sic"})
 
 	#-----------------------------------------------------------------------------------------------------------
 

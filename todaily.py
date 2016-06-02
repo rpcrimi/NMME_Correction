@@ -20,15 +20,21 @@ def convert_files(inputFiles, srcDir, dstDir):
 			return
 		
 
-		newFile = dstDir.rstrip("/") + inputFiles[0].split(srcDir)[-1].replace("6hr", "day").replace("00_", "_")
+		newFile = dstDir + inputFiles[0].split(srcDir)[-1].replace("6hr", "day").replace("00_", "_")
 		directory = ""
 
 		for folder in newFile.split("/")[:-1]:
 			directory += folder + "/"
 			if not os.path.exists(directory):
-				#os.makedirs(directory)
+				print "INFO: Creating folder:\t%s" % (directory)
+				os.makedirs(directory)
 
 		print "INFO: Converting File:\t%s" % (newFile)
+		command = "./tmin %s %s %s %s %s" % (" ".join(inputFiles), newFile)
+		print command
+		p  = subprocess.Popen(shlex.split(command.encode('ascii')), stdout=subprocess.PIPE)
+		out, err = p.communicate()
+		p.stdout.close()
 	
 	else:
 		return
@@ -72,6 +78,7 @@ def main():
 					convert_files([f, files[k+1], files[k+2], files[k+3]], args.srcDir, args.dstDir)
 					bar.update(i)
 					i = i + 1
+					break
 			bar.finish()
 
 if __name__ == "__main__":
