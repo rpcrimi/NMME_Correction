@@ -30,9 +30,9 @@ def convert_files(inputFiles, srcDir, dstDir):
 				os.makedirs(directory)
 
 		print "INFO: Converting File:\t%s" % (newFile)
-		command = "./tmin %s %s %s %s %s" % (" ".join(inputFiles), newFile)
+		command = "./tmin %s %s" % (" ".join(inputFiles), newFile)
 		print command
-		p  = subprocess.Popen(shlex.split(command.encode('ascii')), stdout=subprocess.PIPE)
+		p  = subprocess.Popen(command.encode('ascii'), stdout=subprocess.PIPE)
 		out, err = p.communicate()
 		p.stdout.close()
 	
@@ -71,7 +71,7 @@ def main():
 			files = get_nc_files(args.srcDir, args.dstDir, regexFilter)
 
 			i = 1
-			widgets = ['Percent Done: ', Percentage(), ' ', AnimatedMarker(), ' ', ETA()]
+			widgets = ['Percent Done: ', Percentage(), ' ', ETA()]
 			bar = ProgressBar(widgets=widgets, maxval=len(files)).start()
 			for k, f in enumerate(files):
 				if k+3 < len(files):
