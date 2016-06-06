@@ -16,7 +16,7 @@ def convert_files(inputFiles, srcDir, dstDir):
 	i4 = inputFiles[3].split("_r")[0][-2:] == "18"
 	if i1:
 		if not (i2 and i3 and i4):
-			print "DEBUG: %s" % str(inputFiles)
+			print "DEBUG:\t[%s]" % str(inputFiles)
 			return
 		
 
@@ -26,13 +26,13 @@ def convert_files(inputFiles, srcDir, dstDir):
 		for folder in newFile.split("/")[:-1]:
 			directory += folder + "/"
 			if not os.path.exists(directory):
-				print "INFO: Creating folder:\t%s" % (directory)
+				print "INFO: Creating folder:\t[%s]" % (directory)
 				os.makedirs(directory)
 
-		print "INFO: Converting File:\t%s" % (newFile)
-		command = "./tmin %s %s" % (" ".join(inputFiles), newFile)
+		print "INFO: Converting File:\t[%s]" % (newFile)
+		command = "./tmin.sh %s %s" % (" ".join(inputFiles), newFile)
 		print command
-		p  = subprocess.Popen(command.encode('ascii'), stdout=subprocess.PIPE)
+		p  = subprocess.check_call(shlex.split(command), stdout=subprocess.PIPE)
 		out, err = p.communicate()
 		p.stdout.close()
 	

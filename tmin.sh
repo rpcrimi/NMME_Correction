@@ -69,3 +69,4 @@ outfile=$5
 
 
 echo "task completed"
+exit 0
