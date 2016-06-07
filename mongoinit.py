@@ -138,9 +138,9 @@ def run():
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "surface temperature",                             "Var Name": "ts",        "Known Fix": "surface_temperature"})
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "sea_ice_extent_cell_descriptor",                  "Var Name": "sic",       "Known Fix": "sea_ice_area_fraction"})
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "meridional velocity",                             "Var Name": "vo",        "Known Fix": "sea_water_y_velocity"})
-	StandardNameFixes.insert_one({"Incorrect Standard Name": "Vertical velocity",                               "Var Name": "wo",        "Known Fix": "upward_sea_water_velocity"})
-	StandardNameFixes.insert_one({"Incorrect Standard Name": "Mixed layer depth",                               "Var Name": "zmlo",      "Known Fix": "ocean_mixed_layer_thickness"})
-	StandardNameFixes.insert_one({"Incorrect Standard Name": "Sea level",                                       "Var Name": "zoh",       "Known Fix": "sea_surface_height_above_geoid"})
+	StandardNameFixes.insert_one({"Incorrect Standard Name": "vertical velocity",                               "Var Name": "wo",        "Known Fix": "upward_sea_water_velocity"})
+	StandardNameFixes.insert_one({"Incorrect Standard Name": "mixed layer depth",                               "Var Name": "zmlo",      "Known Fix": "ocean_mixed_layer_thickness"})
+	StandardNameFixes.insert_one({"Incorrect Standard Name": "sea level",                                       "Var Name": "zoh",       "Known Fix": "sea_surface_height_above_geoid"})
 
 
 	#-----------------------------------------------------------------------------------------------------------
