@@ -182,9 +182,9 @@ def run():
 	VarNameFixes.insert_one({"Incorrect Var Name": "STY",       "CF Standard Name": "surface_meridional_stress_positive_to_the_north", "Known Fix": "sty"})
 	VarNameFixes.insert_one({"Incorrect Var Name": "ext",       "CF Standard Name": "sea_ice_extent_cell_descriptor",                  "Known Fix": "sic"})
 	VarNameFixes.insert_one({"Incorrect Var Name": "VO",        "CF Standard Name": "meridional velocity",                             "Known Fix": "vo"})
-	VarNameFixes.insert_one({"Incorrect Var Name": "WO",        "CF Standard Name": "Vertical velocity",                               "Known Fix": "wo"})
-	VarNameFixes.insert_one({"Incorrect Var Name": "ZMLO",      "CF Standard Name": "Mixed layer depth",                               "Known Fix": "zmlo"})
-	VarNameFixes.insert_one({"Incorrect Var Name": "ZOH",       "CF Standard Name": "Sea level",                                       "Known Fix": "zoh"})
+	VarNameFixes.insert_one({"Incorrect Var Name": "WO",        "CF Standard Name": "vertical velocity",                               "Known Fix": "wo"})
+	VarNameFixes.insert_one({"Incorrect Var Name": "ZMLO",      "CF Standard Name": "mixed layer depth",                               "Known Fix": "zmlo"})
+	VarNameFixes.insert_one({"Incorrect Var Name": "ZOH",       "CF Standard Name": "sea level",                                       "Known Fix": "zoh"})
 	VarNameFixes.insert_one({"Incorrect Var Name": "LEVEL",     "CF Standard Name": "depth",                                           "Known Fix": "lev"})
 
 	#-----------------------------------------------------------------------------------------------------------
