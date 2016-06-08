@@ -186,6 +186,7 @@ def run():
 	VarNameFixes.insert_one({"Incorrect Var Name": "ZMLO",      "CF Standard Name": "mixed layer depth",                               "Known Fix": "zmlo"})
 	VarNameFixes.insert_one({"Incorrect Var Name": "ZOH",       "CF Standard Name": "sea level",                                       "Known Fix": "zoh"})
 	VarNameFixes.insert_one({"Incorrect Var Name": "LEVEL",     "CF Standard Name": "depth",                                           "Known Fix": "lev"})
+	VarNameFixes.insert_one({"Incorrect Var Name": "TIME",      "CF Standard Name": "time",                                            "Known Fix": "time"})
 
 	#-----------------------------------------------------------------------------------------------------------
 
