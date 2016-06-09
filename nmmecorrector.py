@@ -201,9 +201,8 @@ class Logger:
 
 # Class to handle Metadata queries and changes
 class MetadataController:
-	def __init__(self, metadataFolder, waitFlag):
+	def __init__(self, metadataFolder):
 		self.metadataFolder = metadataFolder
-		self.waitFlag       = waitFlag
 
 	# Return the location of file==fileName
 	def get_file_name_location(self, fileName):
@@ -256,19 +255,8 @@ class MetadataController:
 			att_val = "'%s'" % att_val
 		call = "ncatted -a %s,%s,%s,%s,%s %s %s" % (att_nm, var_nm, mode, att_type, att_val, ("" if histFlag else "-h"), inputFile)
 		p = subprocess.Popen(shlex.split(call.encode('ascii')))
+		p.wait()
 		returnCode = p.returncode
-
-		if self.waitFlag:
-			out = "None"
-			while out:
-				call = "/usr/sbin/lsof"
-				grep = "grep %s" % (inputFile)
-				p2 = subprocess.Popen(call, stdout=subprocess.PIPE)
-				p3 = subprocess.Popen(shlex.split(grep), stdin=p2.stdout, stdout=subprocess.PIPE)
-				p2.stdout.close()
-				out, err = p3.communicate()
-				p3.stdout.close()
-				returnCode = p.returncode
 
 		if returnCode == 1:
 			return False
@@ -280,17 +268,6 @@ class MetadataController:
 		call = "ncrename -v %s,%s -d .%s,%s %s %s" % (oldName, newName, oldName, newName, ("" if histFlag else "-h"), inputFile)
 		p = subprocess.Popen(shlex.split(call.encode('ascii')))
 		returnCode = p.returncode
-
-		if self.waitFlag:
-			out = "None"
-			while out:
-				call = "/usr/sbin/lsof"
-				grep = "grep %s" % (inputFile)
-				p = subprocess.Popen(call, stdout=subprocess.PIPE)
-				p2 = subprocess.Popen(shlex.split(grep), stdin=p.stdout, stdout=subprocess.PIPE)
-				p.stdout.close()
-				out, err = p2.communicate()
-				p2.stdout.close()
 
 		if returnCode == 1:
 			return False
@@ -334,7 +311,7 @@ class MetadataController:
 
 # Class to validate file names and metadata
 class FileNameValidator:
-	def __init__(self, srcDir, fileName, var, regexFilter, metadataFolder, logger, fixFlag, histFlag, waitFlag):
+	def __init__(self, srcDir, fileName, var, regexFilter, metadataFolder, logger, fixFlag, histFlag):
 		if srcDir: 
 			self.srcDir   = srcDir
 			self.fileName = None
@@ -351,7 +328,7 @@ class FileNameValidator:
 			self.regexFilter     = re.compile(".*")
 
  		self.mongoController     = MongoController()
-		self.metadataController  = MetadataController(metadataFolder, waitFlag)
+		self.metadataController  = MetadataController(metadataFolder)
 		self.logger              = logger
 		self.fixFlag             = fixFlag
 		self.histFlag            = histFlag
@@ -594,7 +571,7 @@ class FileNameValidator:
 		bar.finish()	
 
 class StandardNameValidator:
-	def __init__(self, srcDir, fileName, dstDir, var, regexFilter, metadataFolder, logger, fixFlag, fixUnits, histFlag, waitFlag):
+	def __init__(self, srcDir, fileName, dstDir, var, regexFilter, metadataFolder, logger, fixFlag, fixUnits, histFlag):
 		if srcDir: 
 			self.srcDir          = srcDir
 			self.fileName        = None
@@ -611,7 +588,7 @@ class StandardNameValidator:
 		else:
 			self.regexFilter     = re.compile(".*")
 		self.mongoController     = MongoController()
-		self.metadataController  = MetadataController(metadataFolder, waitFlag)
+		self.metadataController  = MetadataController(metadataFolder)
 		self.logger              = logger
 		self.fileFlag            = True
 		self.fixFlag             = fixFlag
@@ -924,7 +901,6 @@ def main():
 	parser.add_argument("--fix", "--fixFlag",                  dest="fixFlag",         help = "Flag to fix data or only report possible changes (--fix = Fix Data)",  action='store_true',  default=False)
 	parser.add_argument("--fixUnits",                          dest="fixUnits",        help = "Flag to fix units or only report possible changes (--fixUnits = Fix units)",       action='store_true',  default=False)
 	parser.add_argument("--hist", "--histFlag",                dest="histFlag",        help = "Flag to append changes to history metadata (--hist = append to history)",          action='store_true',  default=False)
-	parser.add_argument("--wait",                              dest="wait",            help = "Flag to wait for NCO operations to finish. This takes substantially longer but ensures completeness", action='store_true', default=False)
 
 	args = parser.parse_args()
 	if(len(sys.argv) == 1):
@@ -945,7 +921,7 @@ def main():
 			if (args.srcDir or args.fileName) and args.dstDir:
 				l = Logger(args.logFile)
 				l.set_logfile(args.srcDir or args.fileName)
-				v = StandardNameValidator(args.srcDir, args.fileName, args.dstDir, args.var, args.filter, args.metadataFolder, l, args.fixFlag, args.fixUnits ,args.histFlag, args.wait)
+				v = StandardNameValidator(args.srcDir, args.fileName, args.dstDir, args.var, args.filter, args.metadataFolder, l, args.fixFlag, args.fixUnits ,args.histFlag)
 				v.validate(args.var)
 			else:
 				parser.error("Source directory (-s, --src, --srcDir) or file name (-f, --fileName) and destination directory (-d, --dstDir) required for standard name fix")
@@ -955,7 +931,7 @@ def main():
 			if (args.srcDir or args.fileName):
 				l = Logger(args.logFile)
 				l.set_logfile(args.srcDir or args.fileName)
-				v = FileNameValidator(args.srcDir, args.fileName, args.var, args.filter, args.metadataFolder, l, args.fixFlag, args.histFlag, args.wait)
+				v = FileNameValidator(args.srcDir, args.fileName, args.var, args.filter, args.metadataFolder, l, args.fixFlag, args.histFlag)
 				v.validate(args.var)
 			else:
 				parser.error("Source directory (-s, --src, --srcDir) or file name (-f, --fileName) required for file name fix")
