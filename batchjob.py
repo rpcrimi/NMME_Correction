@@ -39,7 +39,7 @@ def main():
 			print "Pass %d" % (logNum)
 			oldOut = newOut
 			logFile = "%s_%s_%s_%d.log" % (args.model_id, operation, var, logNum)
-			call = "python nmmecorrector.py -o %s -s %s -d %s --var %s --filter %s -l %s %s %s %s %s" % (operation, srcDir, dstDir, var, args.filter, logFile, "--fix" if args.fixFlag else "", "--fixUnits" if args.fixUnits else "", "--hist" if args.histFlag else "")
+			call = "python nmmecorrector.py -o %s -s %s -d %s --var %s --filter %s -l %s %s %s %s" % (operation, srcDir, dstDir, var, args.filter, logFile, "--fix" if args.fixFlag else "", "--fixUnits" if args.fixUnits else "", "--hist" if args.histFlag else "")
 			p = subprocess.Popen(shlex.split(call))
 			p.wait()
 			
