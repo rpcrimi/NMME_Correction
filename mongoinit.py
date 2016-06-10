@@ -65,14 +65,14 @@ def run():
 	CFVars.insert_one({"Variable": "Ocean Mixed Layer Thickness Defined by Sigma T","Var Name": "mlotst",   "CF Standard Name": "ocean_mixed_layer_thickness_defined_by_sigma_t",  "Units": "m"})
 	
 	# Not Verified
-	CFVars.insert_one({"Variable": "Fresh water flux",                              "Var Name": "fwf",      "CF Standard Name": "fresh_water_flux",                                "Units": "XXXXXX"})
-	CFVars.insert_one({"Variable": "Sea-ice extent",                                "Var Name": "XXXXXXXX", "CF Standard Name": "sea_ice_extent",                                  "Units": "m2"})
-	CFVars.insert_one({"Variable": "Vertical integrated moisture flux convergence", "Var Name": "vimfc",    "CF Standard Name": "XXXXXXXXXXXXXX",                                  "Units": "XXXXXX"})
-	CFVars.insert_one({"Variable": "Ground heat flux",                              "Var Name": "XXXXXXXX", "CF Standard Name": "XXXXXXXXXXXXXX",                                  "Units": "W m-2"})
-	CFVars.insert_one({"Variable": "Velocity potential 850 hPa",                    "Var Name": "XXXX",     "CF Standard Name": "velocity_potential_850_hpa",                      "Units": "m2 s-1"})
-	CFVars.insert_one({"Variable": "Velocity potential 200 hPa",                    "Var Name": "XXXX",     "CF Standard Name": "velocity_potential_200_hpa",                      "Units": "m2 s-1"})
-	CFVars.insert_one({"Variable": "Stream function 850 hPa",                       "Var Name": "XXXX",     "CF Standard Name": "stream_function_850_hpa",                         "Units": "m2 s-1"})
-	CFVars.insert_one({"Variable": "Stream function 200 hPa",                       "Var Name": "XXXX",     "CF Standard Name": "stream_function_200_hpa",                         "Units": "m2 s-1"})
+	CFVars.insert_one({"Variable": "Sea-ice extent",                                "Var Name": "Unknown",  "CF Standard Name": "sea_ice_extent",                                  "Units": "m2"})
+	CFVars.insert_one({"Variable": "Ground heat flux",                              "Var Name": "Unknown",  "CF Standard Name": "Unknown",                                         "Units": "W m-2"})
+	CFVars.insert_one({"Variable": "Velocity potential 850 hPa",                    "Var Name": "Unknown",  "CF Standard Name": "velocity_potential_850_hpa",                      "Units": "m2 s-1"})
+	CFVars.insert_one({"Variable": "Velocity potential 200 hPa",                    "Var Name": "Unknown",  "CF Standard Name": "velocity_potential_200_hpa",                      "Units": "m2 s-1"})
+	CFVars.insert_one({"Variable": "Stream function 850 hPa",                       "Var Name": "Unknown",  "CF Standard Name": "stream_function_850_hpa",                         "Units": "m2 s-1"})
+	CFVars.insert_one({"Variable": "Stream function 200 hPa",                       "Var Name": "Unknown",  "CF Standard Name": "stream_function_200_hpa",                         "Units": "m2 s-1"})
+	CFVars.insert_one({"Variable": "Vertical integrated moisture flux convergence", "Var Name": "vimfc",    "CF Standard Name": "Unknown",                                         "Units": "Unknown"})
+	CFVars.insert_one({"Variable": "Fresh water flux",                              "Var Name": "fwf",      "CF Standard Name": "fresh_water_flux",                                "Units": "Unknown"})
 	#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -85,7 +85,6 @@ def run():
 	ValidFreq.insert_one({"Frequency": "Omon"})
 	ValidFreq.insert_one({"Frequency": "yr"})
 	#----------------------------------------------------------------------------------------------------------
-
 
 
 	# STANDARD NAME KNOWN FIXES TABLE

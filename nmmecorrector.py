@@ -891,9 +891,9 @@ def main():
 	parser.add_argument("-s", "--src", "--srcDir",             dest="srcDir",          help = "Source Directory")
 	parser.add_argument("-f", "--fileName",                    dest="fileName",        help = "File Name for single file fix")
 	parser.add_argument("-d", "--dstDir",                      dest="dstDir",          help = "Folder to move fixed files to")
-	parser.add_argument("-m", "--metadata",                    dest="metadataFolder",  help = "Folder to dump original metadata to")
+	parser.add_argument("--metadata",                          dest="metadataFolder",  help = "Folder to dump original metadata to")
 	parser.add_argument("-l", "--logFile",                     dest="logFile",         help = "File to log metadata changes to")
-	parser.add_argument("-v", "--var",                         dest="var",             help = "Variable to filter on (for batch job functionality)")
+	parser.add_argument("-v", "--vars",                        dest="vars",            help = "Variable Names (ex. -v g,hus,pr)")
 	parser.add_argument("--filter",                            dest="filter",          help = "File name filter (REGEX). Will only pull files that match regex. For example --filter .*r10i1p1.* will fix all files with ensemble numbers == r10i1p1")
 	parser.add_argument("-q", "--query",                       dest="query",           help = "JSON Query")
 	parser.add_argument("-c", "-t", "--table", "--collection", dest="collection",      help = "Collection to query")
@@ -901,6 +901,7 @@ def main():
 	parser.add_argument("--fix", "--fixFlag",                  dest="fixFlag",         help = "Flag to fix data or only report possible changes (--fix = Fix Data)",  action='store_true',  default=False)
 	parser.add_argument("--fixUnits",                          dest="fixUnits",        help = "Flag to fix units or only report possible changes (--fixUnits = Fix units)",       action='store_true',  default=False)
 	parser.add_argument("--hist", "--histFlag",                dest="histFlag",        help = "Flag to append changes to history metadata (--hist = append to history)",          action='store_true',  default=False)
+	parser.add_argument("-m", "--model_id",                    dest="model_id",        help = "Model ID for logfile")
 
 	args = parser.parse_args()
 	if(len(sys.argv) == 1):
@@ -919,20 +920,54 @@ def main():
 		# STANDARD NAME FIX
 		elif args.operation == "snf":
 			if (args.srcDir or args.fileName) and args.dstDir:
-				l = Logger(args.logFile)
-				l.set_logfile(args.srcDir or args.fileName)
-				v = StandardNameValidator(args.srcDir, args.fileName, args.dstDir, args.var, args.filter, args.metadataFolder, l, args.fixFlag, args.fixUnits ,args.histFlag)
-				v.validate(args.var)
+				srcDir = args.srcDir if args.srcDir[-1] == "/" else args.srcDir + "/"
+				variables = args.vars.split(",")
+
+				for var in variables:
+					print "Starting \"Standard Name Correction\" on variable %s" % (var.upper())
+					newOut = "foo"
+					oldOut = "bar"
+					logNum = 1
+					while newOut != oldOut:
+						print "Pass %d" % (logNum)
+						oldOut = newOut
+						logFile = "%s_%s_%s_%d.log" % (args.model_id, args.operation, var, logNum)
+						l = Logger(logfile)
+						v = StandardNameValidator(srcDir, args.fileName, args.dstDir, var, args.filter, args.metadataFolder, l, args.fixFlag, args.fixUnits, args.histFlag)
+						v.validate(var)
+						
+						grep = "grep DEBUG %s" % (logFile)
+						p2 = subprocess.Popen(shlex.split(grep), stdout=subprocess.PIPE)
+						newOut, err = p2.communicate()
+						p2.stdout.close()
+						logNum += 1
 			else:
 				parser.error("Source directory (-s, --src, --srcDir) or file name (-f, --fileName) and destination directory (-d, --dstDir) required for standard name fix")
 
 		# FILE NAME FIX
 		elif args.operation == "fnf":
 			if (args.srcDir or args.fileName):
-				l = Logger(args.logFile)
-				l.set_logfile(args.srcDir or args.fileName)
-				v = FileNameValidator(args.srcDir, args.fileName, args.var, args.filter, args.metadataFolder, l, args.fixFlag, args.histFlag)
-				v.validate(args.var)
+				srcDir = args.srcDir if args.srcDir[-1] == "/" else args.srcDir + "/"
+				variables = args.vars.split(",")
+
+				for var in variables:
+					print "Starting \"File Name Correction\" on variable %s" % (var.upper())
+					newOut = "foo"
+					oldOut = "bar"
+					logNum = 1
+					while newOut != oldOut:
+						print "Pass %d" % (logNum)
+						oldOut = newOut
+						logFile = "%s_%s_%s_%d.log" % (args.model_id, args.operation, var, logNum)
+						l = Logger(logfile)
+						v = FileNameValidator(srcDir, args.fileName, var, args.filter, args.metadataFolder, l, args.fixFlag, args.fixUnits, args.histFlag)
+						v.validate(var)
+						
+						grep = "grep DEBUG %s" % (logFile)
+						p2 = subprocess.Popen(shlex.split(grep), stdout=subprocess.PIPE)
+						newOut, err = p2.communicate()
+						p2.stdout.close()
+						logNum += 1	
 			else:
 				parser.error("Source directory (-s, --src, --srcDir) or file name (-f, --fileName) required for file name fix")
 
