@@ -932,14 +932,14 @@ def main():
 						print "Pass %d" % (logNum)
 						oldOut = newOut
 						logFile = "%s_%s_%s_%d.log" % (args.model_id, args.operation, var, logNum)
-						l = Logger(logfile)
+						l = Logger(logFile)
 						v = StandardNameValidator(srcDir, args.fileName, args.dstDir, var, args.filter, args.metadataFolder, l, args.fixFlag, args.fixUnits, args.histFlag)
 						v.validate(var)
 						
 						grep = "grep DEBUG %s" % (logFile)
-						p2 = subprocess.Popen(shlex.split(grep), stdout=subprocess.PIPE)
+						p = subprocess.Popen(shlex.split(grep), stdout=subprocess.PIPE)
 						newOut, err = p2.communicate()
-						p2.stdout.close()
+						p.stdout.close()
 						logNum += 1
 			else:
 				parser.error("Source directory (-s, --src, --srcDir) or file name (-f, --fileName) and destination directory (-d, --dstDir) required for standard name fix")
@@ -959,14 +959,14 @@ def main():
 						print "Pass %d" % (logNum)
 						oldOut = newOut
 						logFile = "%s_%s_%s_%d.log" % (args.model_id, args.operation, var, logNum)
-						l = Logger(logfile)
+						l = Logger(logFile)
 						v = FileNameValidator(srcDir, args.fileName, var, args.filter, args.metadataFolder, l, args.fixFlag, args.fixUnits, args.histFlag)
 						v.validate(var)
 						
 						grep = "grep DEBUG %s" % (logFile)
-						p2 = subprocess.Popen(shlex.split(grep), stdout=subprocess.PIPE)
+						p = subprocess.Popen(shlex.split(grep), stdout=subprocess.PIPE)
 						newOut, err = p2.communicate()
-						p2.stdout.close()
+						p.stdout.close()
 						logNum += 1	
 			else:
 				parser.error("Source directory (-s, --src, --srcDir) or file name (-f, --fileName) required for file name fix")
