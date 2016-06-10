@@ -960,7 +960,7 @@ def main():
 						oldOut = newOut
 						logFile = "%s_%s_%s_%d.log" % (args.model_id, args.operation, var, logNum)
 						l = Logger(logFile)
-						v = FileNameValidator(srcDir, args.fileName, var, args.filter, args.metadataFolder, l, args.fixFlag, args.fixUnits, args.histFlag)
+						v = FileNameValidator(srcDir, args.fileName, var, args.filter, args.metadataFolder, l, args.fixFlag, args.histFlag)
 						v.validate(var)
 						
 						grep = "grep DEBUG %s" % (logFile)
