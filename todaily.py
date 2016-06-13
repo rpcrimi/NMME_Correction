@@ -31,10 +31,11 @@ def convert_files(inputFiles, srcDir, dstDir):
 
 		print "INFO: Converting File:\t[%s]" % (newFile)
 		command = "./tmin.sh %s %s" % (" ".join(inputFiles), newFile)
-		print command
-		p  = subprocess.check_call(shlex.split(command), stdout=subprocess.PIPE)
+		p  = subprocess.Popen(shlex.split(command))
+		p.wait()
 		out, err = p.communicate()
-		p.stdout.close()
+		if err:
+			print "DEBUG: %s" % err
 	
 	else:
 		return

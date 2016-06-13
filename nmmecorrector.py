@@ -965,7 +965,7 @@ def main():
 						
 						grep = "grep DEBUG %s" % (logFile)
 						p = subprocess.Popen(shlex.split(grep), stdout=subprocess.PIPE)
-						newOut, err = p2.communicate()
+						newOut, err = p.communicate()
 						p.stdout.close()
 						logNum += 1	
 			else:
