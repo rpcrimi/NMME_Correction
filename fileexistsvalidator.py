@@ -209,7 +209,7 @@ def main():
 		if args.order:
 			fileOrder = args.order.split(",")
 		else:
-			fileOrder = ["initializationDates", "frequency", "realm", "variable"]
+			fileOrder = ["initializationDates", "frequencies", "realms", "variable"]
 
 		results = {}
 		totalVars = len(variables)
