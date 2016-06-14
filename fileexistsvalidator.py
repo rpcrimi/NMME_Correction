@@ -209,7 +209,7 @@ def main():
 		if args.order:
 			fileOrder = args.order.split(",")
 		else:
-			fileOrder = ["initializationDates", "frequencies", "realms", "variable"]
+			fileOrder = ["initializationDates", "frequency", "realm", "variable"]
 
 		results = {}
 		totalVars = len(variables)
@@ -218,7 +218,7 @@ def main():
 		bar = ProgressBar(widgets=widgets, maxval=totalVars).start()
 		for var in variables:
 			logFile = args.logfileDir+frequency+"_"+realm+"_"+var+".log"
-			f = FileExistsValidator(srcDir, frequencies, var, realms, dateRanges, fileOrder, ensembleRange, logFile, args.model_id)
+			f = FileExistsValidator(srcDir, frequency, var, realm, dateRanges, fileOrder, ensembleRange, logFile, args.model_id)
 
 			results[var] = f.validate()
 			if args.updateSpreadsheet and f.model_id:
@@ -233,7 +233,7 @@ def main():
 		pprint.pprint(results)
 
 	else:
-		parser.error("Frequencies, Realms, Date Ranges, and logfile directory are required")
+		parser.error("Frequency, Realm, Date Ranges, and logfile directory are required")
 
 if __name__ == "__main__":
 	main()
