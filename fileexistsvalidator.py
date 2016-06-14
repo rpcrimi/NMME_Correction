@@ -193,7 +193,7 @@ def main():
 	if(len(sys.argv) == 1):
 		parser.print_help()
 
-	elif args.srcDir and args.frequencies and args.realms and args.dates and args.logfileDir:
+	elif args.srcDir and args.frequency and args.realms and args.dates and args.logfileDir:
 		srcDir        = args.srcDir
 		frequency     = args.frequency
 		realm         = args.realm
