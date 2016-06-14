@@ -181,9 +181,9 @@ def main():
 	parser = argparse.ArgumentParser(description='File Name Creator:\n All arguments should be comma seperated. For example, checking for variables "pr, hus, g" should be "-v g,hus,pr"', formatter_class=argparse.RawTextHelpFormatter)
 	parser.add_argument("-s", "--srcDir",      dest="srcDir",            help="Source Directory (IGNORE MODEL_ID) (ex. -s CCCMA/, UM-RSMAS/ not CCCMA/CanCM3 or UM-RSMAS/CCSM4)")
 	parser.add_argument("-m", "--model_id",    dest="model_id",          help="Optional Model ID for cases when only one model is desired (ex. Just look at CanCM3 instead of CanCM3 and CanCM4")
-	parser.add_argument("-f", "--frequencies", dest="frequencies",       help="Frequencies (ex. -f day,mon)")
+	parser.add_argument("-f", "--frequency",   dest="frequency",         help="Frequencies (ex. -f day,mon)")
 	parser.add_argument("-v", "--vars",        dest="vars",              help="Variable Name (ex. -v g,hus,pr)")
-	parser.add_argument("-r", "--realms",      dest="realms",            help="Modeling Realms (ex. -r atmos,land)")
+	parser.add_argument("-r", "--realm",       dest="realm",             help="Modeling Realms (ex. -r atmos,land)")
 	parser.add_argument("-d", "--dates",       dest="dates",             help="Date Ranges (NON-OCTAL FORMAT) (ex. 1982-01 to 1984-12 and 1990-01 to 1991-01 would be [[[1982,1],[1984,12]], [[1990,1],[1991,1]]]")
 	parser.add_argument("-o", "--order",       dest="order",             help="Optionaly order of folders under srcDir (ex. -o initializationDates,frequencies,realms,variables for NMME data)")
 	parser.add_argument("-u", "--update",      dest="updateSpreadsheet", help="If set, script will update Google Spreadsheet that represents the modeling realm and frequency", default=False, action='store_true')
@@ -195,8 +195,8 @@ def main():
 
 	elif args.srcDir and args.frequencies and args.realms and args.dates and args.logfileDir:
 		srcDir        = args.srcDir
-		frequencies   = args.frequencies.split(",")
-		realms        = args.realms.split(",")
+		frequency     = args.frequency
+		realm         = args.realm
 		dateRanges    = ast.literal_eval(args.dates)
 		ensembleRange = ast.literal_eval(args.ensembles)
 
@@ -204,11 +204,7 @@ def main():
 			variables = args.vars.split(",")
 		else:
 			cursor = db.CFVars.find()
-
-			variables = []
-			for var in cursor:
-				if "X" not in var["Var Name"]:
-					variables.append(var["Var Name"])		
+			variables = [var["Var Name"] for var in cursor]
 
 		if args.order:
 			fileOrder = args.order.split(",")
@@ -221,20 +217,13 @@ def main():
 		widgets = ['Percent Done: ', Percentage(), ' ', AnimatedMarker(), ' ', ETA()]
 		bar = ProgressBar(widgets=widgets, maxval=totalVars).start()
 		for var in variables:
-			if "/" not in args.logfileDir:
-				logDir = args.logfileDir+"/"+os.path.basename(srcDir[0:-1])
-			else:
-				logDir = args.logfileDir+os.path.basename(srcDir[0:-1])
-			if not os.path.exists(logDir):
-				os.makedirs(logDir)
-			logFile = logDir+"/"+frequencies[0]+"_"+realms[0]+"_"+var+".log"
-
+			logFile = args.logfileDir+frequency+"_"+realm+"_"+var+".log"
 			f = FileExistsValidator(srcDir, frequencies, var, realms, dateRanges, fileOrder, ensembleRange, logFile, args.model_id)
 
 			results[var] = f.validate()
 			if args.updateSpreadsheet and f.model_id:
-				spreadsheet = spreadsheets[realms[0]][frequencies[0]]
-				d = {"Percentage": results[var], "Realm": realms[0], "Frequencies": frequencies[0]}
+				spreadsheet = spreadsheets[realm][frequency]
+				d = {"Percentage": results[var], "Realm": realm, "Frequencies": frequency}
 				update_cell(spreadsheet, var, f.model_id, d)
 
 			bar.update(i)

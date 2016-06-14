@@ -79,7 +79,8 @@ def main():
 					convert_files([f, files[k+1], files[k+2], files[k+3]], args.srcDir, args.dstDir)
 					bar.update(i)
 					i = i + 1
-					break
+					if i == 10:
+						break
 			bar.finish()
 
 if __name__ == "__main__":
