@@ -140,7 +140,12 @@ def run():
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "vertical velocity",                               "Var Name": "wo",        "Known Fix": "upward_sea_water_velocity"})
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "mixed layer depth",                               "Var Name": "zmlo",      "Known Fix": "ocean_mixed_layer_thickness"})
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "sea level",                                       "Var Name": "zoh",       "Known Fix": "sea_surface_height_above_geoid"})
-
+	StandardNameFixes.insert_one({"Incorrect Standard Name": "lowest model level meridional wind",              "Var Name": "vas",       "Known Fix": "northward_wind"})
+	StandardNameFixes.insert_one({"Incorrect Standard Name": "lowest model level zonal wind",                   "Var Name": "uas",       "Known Fix": "eastward_wind"})
+	StandardNameFixes.insert_one({"Incorrect Standard Name": "reference height(2m) temperature",                "Var Name": "tas",       "Known Fix": "air_temperature"})
+	StandardNameFixes.insert_one({"Incorrect Standard Name": "vertically-integrated total cloud",               "Var Name": "clt",       "Known Fix": "cloud_area_fraction"})
+	StandardNameFixes.insert_one({"Incorrect Standard Name": "zonal velocity",                                  "Var Name": "uo",        "Known Fix": "sea_water_x_velocity"})
+	StandardNameFixes.insert_one({"Incorrect Standard Name": "potentail temperature",                           "Var Name": "thetao",    "Known Fix": "sea_water_potential_temperature"})
 
 	#-----------------------------------------------------------------------------------------------------------
 
@@ -186,6 +191,12 @@ def run():
 	VarNameFixes.insert_one({"Incorrect Var Name": "ZOH",       "CF Standard Name": "sea level",                                       "Known Fix": "zoh"})
 	VarNameFixes.insert_one({"Incorrect Var Name": "LEVEL",     "CF Standard Name": "depth",                                           "Known Fix": "lev"})
 	VarNameFixes.insert_one({"Incorrect Var Name": "TIME",      "CF Standard Name": "time",                                            "Known Fix": "time"})
+	VarNameFixes.insert_one({"Incorrect Var Name": "VAS",       "CF Standard Name": "lowest model level meridional wind",              "Known Fix": "vas"})
+	VarNameFixes.insert_one({"Incorrect Var Name": "UAS",       "CF Standard Name": "lowest model level zonal wind",                   "Known Fix": "uas"})
+	VarNameFixes.insert_one({"Incorrect Var Name": "TAS",       "CF Standard Name": "reference height(2m) temperature",                "Known Fix": "tas"})
+	VarNameFixes.insert_one({"Incorrect Var Name": "CLT",       "CF Standard Name": "vertically-integrated total cloud",               "Known Fix": "clt"})
+	VarNameFixes.insert_one({"Incorrect Var Name": "UO",        "CF Standard Name": "zonal velocity",                                  "Known Fix": "uo"})
+	VarNameFixes.insert_one({"Incorrect Var Name": "THETAO",    "CF Standard Name": "potentail temperature",                           "Known Fix": "thetao"})
 
 	#-----------------------------------------------------------------------------------------------------------
 
