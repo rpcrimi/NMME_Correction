@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 DD=$(date +%Y)_$(date +%m)_$(date +%d)
 fileexistsvalidator=/datazone/nmme/convert_final/NMME_Correction/fileexistsvalidator.py
