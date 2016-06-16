@@ -79,7 +79,7 @@ def main():
 					convert_files([f, files[k+1], files[k+2], files[k+3]], args.srcDir, args.dstDir)
 					bar.update(i)
 					i = i + 1
-					if i == 8:
+					if i == 16:
 						break
 			bar.finish()
 
