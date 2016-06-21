@@ -198,6 +198,7 @@ def run():
 	VarNameFixes.insert_one({"Incorrect Var Name": "TAS",       "CF Standard Name": "reference height(2m) temperature",                "Known Fix": "tas"})
 	VarNameFixes.insert_one({"Incorrect Var Name": "T_REF",     "CF Standard Name": "2m air_temperature",                              "Known Fix": "tas"})
 	VarNameFixes.insert_one({"Incorrect Var Name": "TAS",       "CF Standard Name": "reference height(2m) temperature",                "Known Fix": "tas"})
+	VarNameFixes.insert_one({"Incorrect Var Name": "TAS",       "CF Standard Name": "air temperature",                                 "Known Fix": "tas"})
 	VarNameFixes.insert_one({"Incorrect Var Name": "CLT",       "CF Standard Name": "vertically-integrated total cloud",               "Known Fix": "clt"})
 	VarNameFixes.insert_one({"Incorrect Var Name": "UO",        "CF Standard Name": "zonal velocity",                                  "Known Fix": "uo"})
 	VarNameFixes.insert_one({"Incorrect Var Name": "THETAO",    "CF Standard Name": "potentail temperature",                           "Known Fix": "thetao"})
