@@ -105,7 +105,7 @@ def run():
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "net longwave flux at top of model",               "Var Name": "FLNT",      "Known Fix": "toa_net_downward_longwave_flux"})
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "net solar flux at surface",                       "Var Name": "FSNS",      "Known Fix": "surface_net_downward_shortwave_flux"})
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "net solar flux at top of model",                  "Var Name": "FSNT",      "Known Fix": "toa_net_downward_shortwave_flux"})
-	StandardNameFixes.insert_one({"Incorrect Standard Name": "total runoff (qover + qdrai + qrgwl)",            "Var Name": "TOTRUNOFF", "Known Fix": "total_runoff"})
+	StandardNameFixes.insert_one({"Incorrect Standard Name": "total runoff (qover + qdrai + qrgwl)",            "Var Name": "TOTRUNOFF", "Known Fix": "surface_runoff_flux"})
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "zonal surface stress",                            "Var Name": "STX",       "Known Fix": "surface_zonal_stress_positive_to_the_west"})
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "meridional surface stress",                       "Var Name": "STY",       "Known Fix": "surface_meridional_stress_positive_to_the_north"})
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "salinity",                                        "Var Name": "SO",        "Known Fix": "sea_water_salinity"})
@@ -148,6 +148,7 @@ def run():
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "vertically-integrated total cloud",               "Var Name": "clt",       "Known Fix": "cloud_area_fraction"})
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "zonal velocity",                                  "Var Name": "uo",        "Known Fix": "sea_water_x_velocity"})
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "potentail temperature",                           "Var Name": "thetao",    "Known Fix": "sea_water_potential_temperature"})
+	StandardNameFixes.insert_one({"Incorrect Standard Name": "total_runoff",                                    "Var Name": "mrros",     "Known Fix": "surface_runoff_flux"})
 
 	#-----------------------------------------------------------------------------------------------------------
 
@@ -202,6 +203,7 @@ def run():
 	VarNameFixes.insert_one({"Incorrect Var Name": "CLT",       "CF Standard Name": "vertically-integrated total cloud",               "Known Fix": "clt"})
 	VarNameFixes.insert_one({"Incorrect Var Name": "UO",        "CF Standard Name": "zonal velocity",                                  "Known Fix": "uo"})
 	VarNameFixes.insert_one({"Incorrect Var Name": "THETAO",    "CF Standard Name": "potentail temperature",                           "Known Fix": "thetao"})
+	VarNameFixes.insert_one({"Incorrect Var Name": "TOTRUNOFF", "CF Standard Name": "total_runoff",                                    "Known Fix": "mrros"})
 
 	#-----------------------------------------------------------------------------------------------------------
 
