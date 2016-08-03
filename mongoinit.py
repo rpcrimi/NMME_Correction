@@ -149,7 +149,7 @@ def run():
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "zonal velocity",                                  "Var Name": "uo",        "Known Fix": "sea_water_x_velocity"})
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "potentail temperature",                           "Var Name": "thetao",    "Known Fix": "sea_water_potential_temperature"})
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "total_runoff",                                    "Var Name": "mrros",     "Known Fix": "surface_runoff_flux"})
-	StandardNameFixes.insert_one({"Incorrect Standard Name": "convective precipitation rate",                   "Var Name": "precc",     "Known Fix": "convective_precipitation_rate"})
+	StandardNameFixes.insert_one({"Incorrect Standard Name": "convective precipitation rate (liq + ice)",       "Var Name": "precc",     "Known Fix": "convective_precipitation_rate"})
 
 	#-----------------------------------------------------------------------------------------------------------
 
@@ -206,6 +206,7 @@ def run():
 	VarNameFixes.insert_one({"Incorrect Var Name": "THETAO",    "CF Standard Name": "potentail temperature",                           "Known Fix": "thetao"})
 	VarNameFixes.insert_one({"Incorrect Var Name": "TOTRUNOFF", "CF Standard Name": "total_runoff",                                    "Known Fix": "mrros"})
 	VarNameFixes.insert_one({"Incorrect Var Name": "PRECC",     "CF Standard Name": "convective precipitation rate",                   "Known Fix": "precc"})
+	VarNameFixes.insert_one({"Incorrect Var Name": "PRECC",     "CF Standard Name": "convective precipitation rate (liq + ice)",       "Known Fix": "precc"})
 
 	#-----------------------------------------------------------------------------------------------------------
 
