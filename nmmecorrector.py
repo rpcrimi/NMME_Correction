@@ -346,7 +346,6 @@ class FileNameValidator:
 				# Find all filenames with .nc type
 				for filename in files:
 					filename = os.path.join(root, filename)
-					#if filename.endswith(('.nc', '.nc4')) and re.match(self.regexFilter, filename):
 					if filename.endswith(('.nc', '.nc4')) and re.match(self.regexFilter, filename) and re.match(self.varFilter, filename):
 							matches.append(filename)
 			return matches
