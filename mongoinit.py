@@ -150,6 +150,7 @@ def run():
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "potentail temperature",                           "Var Name": "thetao",    "Known Fix": "sea_water_potential_temperature"})
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "total_runoff",                                    "Var Name": "mrros",     "Known Fix": "surface_runoff_flux"})
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "convective precipitation rate (liq + ice)",       "Var Name": "precc",     "Known Fix": "convective_precipitation_rate"})
+	StandardNameFixes.insert_one({"Incorrect Standard Name": "convective precipitation rate",                   "Var Name": "precc",     "Known Fix": "convective_precipitation_rate"})
 
 	#-----------------------------------------------------------------------------------------------------------
 
