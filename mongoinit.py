@@ -153,6 +153,8 @@ def run():
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "convective precipitation rate",                        "Var Name": "precc",     "Known Fix": "convective_precipitation_rate"})
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "large scale precipitation rate",                       "Var Name": "precl",     "Known Fix": "stratiform_precipitation_flux"})
 	StandardNameFixes.insert_one({"Incorrect Standard Name": "large-scale (stable) precipitation rate (liq + ice)",  "Var Name": "precl",     "Known Fix": "stratiform_precipitation_flux"})
+	StandardNameFixes.insert_one({"Incorrect Standard Name": "meridional_speed",                                     "Var Name": "vo",        "Known Fix": "sea_water_y_velocity"})
+	StandardNameFixes.insert_one({"Incorrect Standard Name": "zonal_speed",                                          "Var Name": "uo",        "Known Fix": "sea_water_x_velocity"})
 	#-----------------------------------------------------------------------------------------------------------
 
 
@@ -210,6 +212,8 @@ def run():
 	VarNameFixes.insert_one({"Incorrect Var Name": "PRECC",     "CF Standard Name": "convective precipitation rate",                        "Known Fix": "precc"})
 	VarNameFixes.insert_one({"Incorrect Var Name": "PRECC",     "CF Standard Name": "convective precipitation rate (liq + ice)",            "Known Fix": "precc"})
 	VarNameFixes.insert_one({"Incorrect Var Name": "PRECL",     "CF Standard Name": "large-scale (stable) precipitation rate (liq + ice)",  "Known Fix": "precl"})
+	VarNameFixes.insert_one({"Incorrect Var Name": "VO",        "CF Standard Name": "meridional_speed",                                     "Known Fix": "vo"})
+	VarNameFixes.insert_one({"Incorrect Var Name": "UO",        "CF Standard Name": "zonal_speed",                                          "Known Fix": "uo"})
 
 	#-----------------------------------------------------------------------------------------------------------
 
