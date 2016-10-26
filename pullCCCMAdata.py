@@ -6,7 +6,7 @@ import subprocess
 from progressbar import *
 from bs4 import BeautifulSoup, SoupStrainer
 
-http_source = 'http://collaboration.cmc.ec.gc.ca/cmc/cccma/CanSIPS/NMME/CanCM%d/01/'
+http_source = 'http://collaboration.cmc.ec.gc.ca/cmc/cccma/CanSIPS/NMME/CanCM%d/02/'
 for model_id in [3,4]:
 	print "Current model:\tCanCM%d" % model_id
 	print "Gathering Files..."
