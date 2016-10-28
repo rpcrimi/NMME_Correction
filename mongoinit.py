@@ -73,6 +73,12 @@ def run():
 	CFVars.insert_one({"Variable": "Stream function 200 hPa",                       "Var Name": "Unknown",  "CF Standard Name": "stream_function_200_hpa",                         "Units": "m2 s-1"})
 	CFVars.insert_one({"Variable": "Vertical integrated moisture flux convergence", "Var Name": "vimfc",    "CF Standard Name": "Unknown",                                         "Units": "Unknown"})
 	CFVars.insert_one({"Variable": "Fresh water flux",                              "Var Name": "fwf",      "CF Standard Name": "fresh_water_flux",                                "Units": "Unknown"})
+	CFVars.insert_one({"Variable": "Specific Humidity 10 hPa",                      "Var Name": "hus10",    "CF Standard Name": "specific_humidity_10_hpa",                        "Units": "Unknown"})
+	CFVars.insert_one({"Variable": "Geopotential 10 hPa",                           "Var Name": "g10",      "CF Standard Name": "Geopotential_10_hpa",                             "Units": "Unknown"})
+	CFVars.insert_one({"Variable": "Zonal Velocity 10 hPa",                         "Var Name": "ua10",     "CF Standard Name": "zonal_velocity_10_hpa",                           "Units": "Unknown"})
+	CFVars.insert_one({"Variable": "Meridional Velocity 10 hPa",                    "Var Name": "va10",     "CF Standard Name": "meridional_velocity_10_hpa",                      "Units": "Unknown"})
+	CFVars.insert_one({"Variable": "Temperature 10 hPa",                            "Var Name": "ta10",     "CF Standard Name": "Temperature 10 hPa",                              "Units": "Unknown"})
+	
 	#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
