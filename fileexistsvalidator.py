@@ -15,7 +15,7 @@ from dateutil import rrule
 connection            = pymongo.MongoClient()
 db                    = connection["Attribute_Correction"]
 CFVars                = db["CFVars"]
-versionRegex          = re.compile('v[0-9]+')
+versionRegex          = re.compile('.*v20161020.*')
 json_key              = json.load(open('/datazone/nmme/convert_final/NMME_Correction/NMME Archive Status-fbde24980f40.json'))
 scope                 = ['https://spreadsheets.google.com/feeds']
 credentials           = SignedJwtAssertionCredentials(json_key['client_email'], json_key['private_key'], scope)
@@ -141,9 +141,7 @@ class FileExistsValidator:
 			self.print_dict(folderType, doesNotExist)
 
 			if doesExist:
-				fullList = []
-				for val in doesExist.values():
-					fullList += val
+				fullList = [val for val in doesExist.values()]
 				return fullList
 
 	def validate(self):
@@ -213,10 +211,9 @@ def main():
 
 		results = {}
 		totalVars = len(variables)
-		i = 1
 		widgets = ['Percent Done: ', Percentage(), ' ', AnimatedMarker(), ' ', ETA()]
 		bar = ProgressBar(widgets=widgets, maxval=totalVars).start()
-		for var in variables:
+		for i,var in enumerate(variables):
 			logFile = args.logfileDir+frequencies[0]+"_"+realms[0]+"_"+var+".log"
 			f = FileExistsValidator(srcDir, frequencies, var, realms, dateRanges, fileOrder, ensembleRange, logFile, args.model_id)
 
@@ -227,7 +224,6 @@ def main():
 				update_cell(spreadsheet, var, f.model_id, d)
 
 			bar.update(i)
-			i = i + 1
 		bar.finish()
 
 		pprint.pprint(results)
