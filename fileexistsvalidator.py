@@ -121,6 +121,7 @@ class FileExistsValidator:
 			return [(parentFolder + "/" + folderType) for parentFolder in parentFolders]
 		else:
 			for parentFolder in parentFolders:
+				print parentFolder
 				if os.path.exists(parentFolder):
 					subdir = [name for name in os.listdir(parentFolder) if os.path.isdir(os.path.join(parentFolder, name))][0]
 					if re.match(versionRegex, subdir):
