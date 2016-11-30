@@ -15,7 +15,7 @@ from dateutil import rrule
 connection            = pymongo.MongoClient()
 db                    = connection["Attribute_Correction"]
 CFVars                = db["CFVars"]
-versionRegex          = re.compile('v[0-9]+')
+versionRegex          = re.compile('.*v20161020.*')
 json_key              = json.load(open('/datazone/nmme/convert_final/NMME_Correction/NMME Archive Status-fbde24980f40.json'))
 scope                 = ['https://spreadsheets.google.com/feeds']
 credentials           = SignedJwtAssertionCredentials(json_key['client_email'], json_key['private_key'], scope)
