@@ -15,7 +15,7 @@ from dateutil import rrule
 connection            = pymongo.MongoClient()
 db                    = connection["Attribute_Correction"]
 CFVars                = db["CFVars"]
-versionRegex          = re.compile('.*v20161020.*')
+versionRegex          = re.compile('v[0-9]+')
 json_key              = json.load(open('/datazone/nmme/convert_final/NMME_Correction/NMME Archive Status-fbde24980f40.json'))
 scope                 = ['https://spreadsheets.google.com/feeds']
 credentials           = SignedJwtAssertionCredentials(json_key['client_email'], json_key['private_key'], scope)
@@ -121,7 +121,6 @@ class FileExistsValidator:
 			return [(parentFolder + "/" + folderType) for parentFolder in parentFolders]
 		else:
 			for parentFolder in parentFolders:
-				print parentFolder
 				if os.path.exists(parentFolder):
 					subdir = [name for name in os.listdir(parentFolder) if os.path.isdir(os.path.join(parentFolder, name))][0]
 					if re.match(versionRegex, subdir):
@@ -142,7 +141,9 @@ class FileExistsValidator:
 			self.print_dict(folderType, doesNotExist)
 
 			if doesExist:
-				fullList = [val for val in doesExist.values()]
+				fullList = []
+				for val in doesExist.values():
+					fullList += val
 				return fullList
 
 	def validate(self):
@@ -223,7 +224,6 @@ def main():
 				spreadsheet = spreadsheets[realms[0]][frequencies[0]]
 				d = {"Percentage": results[var], "Realm": realms[0], "Frequencies": frequencies[0]}
 				update_cell(spreadsheet, var, f.model_id, d)
-
 			bar.update(i)
 		bar.finish()
 
