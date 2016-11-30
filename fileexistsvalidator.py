@@ -126,6 +126,8 @@ class FileExistsValidator:
 					if re.match(versionRegex, subdir):
 						print "HERE"
 						parentFolder += "/" + subdir
+					else:
+						print "not here"
 					doesNotExist[parentFolder] = []
 					doesExist[parentFolder]    = []
 					for folder in eval('self.'+folderType):
