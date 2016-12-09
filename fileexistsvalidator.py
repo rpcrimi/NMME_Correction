@@ -15,7 +15,8 @@ from dateutil import rrule
 connection            = pymongo.MongoClient()
 db                    = connection["Attribute_Correction"]
 CFVars                = db["CFVars"]
-versionRegex          = re.compile('.*v20161020.*')
+v1Regex               = re.compile('.*v20140710.*')
+v2Regex               = re.compile('.*v20161020.*')
 json_key              = json.load(open('/datazone/nmme/convert_final/NMME_Correction/NMME Archive Status-fbde24980f40.json'))
 scope                 = ['https://spreadsheets.google.com/feeds']
 credentials           = SignedJwtAssertionCredentials(json_key['client_email'], json_key['private_key'], scope)
@@ -124,9 +125,8 @@ class FileExistsValidator:
 				if os.path.exists(parentFolder):
 					# Check for version folder
 					subdir = [name for name in os.listdir(parentFolder) if os.path.isdir(os.path.join(parentFolder, name))]
-					if len(subdir) == 2 and re.match(versionRegex, subdir[-1]):
+					if (len(subdir) == 2 and re.match(v2Regex, subdir[-1])) or (len(subdir) == 1 and re.match(v1Regex, subdir[-1])):
 						parentFolder += "/" + subdir[-1]
-						print parentFolder
 					doesNotExist[parentFolder] = []
 					doesExist[parentFolder]    = []
 					for folder in eval('self.'+folderType):
