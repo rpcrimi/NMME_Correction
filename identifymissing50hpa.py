@@ -19,5 +19,13 @@ i = 1
 widgets = ['Percent Done: ', Percentage(), ' ', AnimatedMarker(), ' ', ETA()]
 bar = ProgressBar(widgets=widgets, maxval=len(matches)).start()
 for f in matches:
+	call = "ncdump -v lev_p %s" % (f) 
+	p = subprocess.Popen(shlex.split(call.encode('ascii')), stdout=subprocess.PIPE)
+	out, err = p.communicate()
+	p.stdout.close()
+	if err: print(err)
+	else:
+		print out
 	bar.update(i)
 	i = i + 1
+	break
