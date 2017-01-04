@@ -1,5 +1,7 @@
 import os
 import re
+import shlex
+import subprocess
 from progressbar import *
 
 srcDir = "/datazone/nmme/output1/UM-RSMAS/CCSM4/19820101/"
