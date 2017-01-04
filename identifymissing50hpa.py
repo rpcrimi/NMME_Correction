@@ -1,5 +1,6 @@
 import os
 import re
+from progressbar import *
 
 srcDir = "/datazone/nmme/output1/UM-RSMAS/CCSM4/19820101/"
 regexFilter = re.compile(".*(g|ta|ua|va)_day.*")
