@@ -4,7 +4,7 @@ import shlex
 import subprocess
 from progressbar import *
 
-srcDir = "/datazone/nmme/output1/UM-RSMAS/CCSM4/"
+srcDir = "/datazone/nmme/output1/UM-RSMAS/CCSM4/19820201/"
 regexFilter = re.compile(".*(g|ta|ua|va)_day.*")
 
 print "Gathering Files..."
@@ -28,7 +28,9 @@ for f in matches:
 	p.stdout.close()
 	if err: print(err)
 	else:
-		levels = re.split("data: |lev_p = | ;", out)[-2]
+		levels = out.split("data:")[-1]
+		print levels
+		break
 		if ", 50," not in levels:
 			missingData.append(f)
 	bar.update(i)
