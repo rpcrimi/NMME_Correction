@@ -29,8 +29,6 @@ for f in matches:
 	if err: print(err)
 	else:
 		levels = out.split("data:")[-1]
-		print levels
-		break
 		if "850, 500, 200, 100, 50, 10 ;" not in levels:
 			missingData.append(f)
 	bar.update(i)
