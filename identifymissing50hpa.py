@@ -28,7 +28,7 @@ for f in matches:
 	if err: print(err)
 	else:
 		levels = re.split("data: |lev_p = | ;", out)
-		print levels
+		print levels[-2]
 	bar.update(i)
 	i = i + 1
 	break
