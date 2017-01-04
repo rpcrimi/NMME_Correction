@@ -27,7 +27,7 @@ for f in matches:
 	p.stdout.close()
 	if err: print(err)
 	else:
-		print out
+		print out.split("data:")[-1]
 	bar.update(i)
 	i = i + 1
 	break
