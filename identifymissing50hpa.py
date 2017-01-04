@@ -17,6 +17,6 @@ print "Analyzing Files..."
 i = 1
 widgets = ['Percent Done: ', Percentage(), ' ', AnimatedMarker(), ' ', ETA()]
 bar = ProgressBar(widgets=widgets, maxval=len(matches)).start()
-for f in matches
+for f in matches:
 	bar.update(i)
 	i = i + 1
