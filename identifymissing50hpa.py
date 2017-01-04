@@ -4,7 +4,7 @@ import shlex
 import subprocess
 from progressbar import *
 
-srcDir = "/datazone/nmme/output1/UM-RSMAS/CCSM4/19820201/"
+srcDir = "/datazone/nmme/output1/UM-RSMAS/CCSM4/"
 regexFilter = re.compile(".*(g|ta|ua|va)_day.*")
 
 print "Gathering Files..."
