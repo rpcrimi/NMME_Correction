@@ -31,7 +31,7 @@ for f in matches:
 		levels = out.split("data:")[-1]
 		print levels
 		break
-		if ", 50," not in levels:
+		if "850, 500, 200, 100, 50, 10 ;" not in levels:
 			missingData.append(f)
 	bar.update(i)
 	i = i + 1
