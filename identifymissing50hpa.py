@@ -4,7 +4,7 @@ import shlex
 import subprocess
 from progressbar import *
 
-srcDir = "/datazone/nmme/output1/UM-RSMAS/CCSM4/19820201/"
+srcDir = "/datazone/nmme/output1/UM-RSMAS/CCSM4/"
 regexFilter = re.compile(".*(g|ta|ua|va)_day.*")
 
 print "Gathering Files..."
@@ -17,6 +17,7 @@ for root, dirnames, files in os.walk(srcDir):
 				matches.append(filename)
 
 print "Analyzing Files..."
+missingData = []
 i = 1
 widgets = ['Percent Done: ', Percentage(), ' ', AnimatedMarker(), ' ', ETA()]
 bar = ProgressBar(widgets=widgets, maxval=len(matches)).start()
@@ -29,6 +30,8 @@ for f in matches:
 	else:
 		levels = re.split("data: |lev_p = | ;", out)[-2]
 		if ", 50," not in levels:
-			print f
+			missingData.append(f)
 	bar.update(i)
 	i = i + 1
+
+print missingData
