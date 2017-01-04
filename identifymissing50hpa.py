@@ -27,8 +27,8 @@ for f in matches:
 	p.stdout.close()
 	if err: print(err)
 	else:
-		levels = re.split("data: |lev_p = | ;", out)
-		print levels[-2]
+		levels = re.split("data: |lev_p = | ;", out)[-2]
+		if "50," not in levels:
+			print f
 	bar.update(i)
 	i = i + 1
-	break
