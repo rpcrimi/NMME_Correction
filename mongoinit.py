@@ -78,7 +78,22 @@ def run():
 	CFVars.insert_one({"Variable": "Zonal Velocity 10 hPa",                         "Var Name": "ua10",     "CF Standard Name": "zonal_velocity_10_hpa",                           "Units": "Unknown"})
 	CFVars.insert_one({"Variable": "Meridional Velocity 10 hPa",                    "Var Name": "va10",     "CF Standard Name": "meridional_velocity_10_hpa",                      "Units": "Unknown"})
 	CFVars.insert_one({"Variable": "Temperature 10 hPa",                            "Var Name": "ta10",     "CF Standard Name": "Temperature 10 hPa",                              "Units": "Unknown"})
-	
+
+	# Not Verified (CFSV2 Data)
+	CFVars.insert_one({"Variable": "Unknown",                                       "Var Name": "ta1000",   "CF Standard Name": "Unknown",                                         "Units": "Unknown"})
+	CFVars.insert_one({"Variable": "Unknown",                                       "Var Name": "ta2",      "CF Standard Name": "Unknown",                                         "Units": "Unknown"})
+	CFVars.insert_one({"Variable": "Unknown",                                       "Var Name": "ta200",    "CF Standard Name": "Unknown",                                         "Units": "Unknown"})
+	CFVars.insert_one({"Variable": "Unknown",                                       "Var Name": "ta50",     "CF Standard Name": "Unknown",                                         "Units": "Unknown"})
+	CFVars.insert_one({"Variable": "Unknown",                                       "Var Name": "ta500",    "CF Standard Name": "Unknown",                                         "Units": "Unknown"})
+	CFVars.insert_one({"Variable": "Unknown",                                       "Var Name": "ta700",    "CF Standard Name": "Unknown",                                         "Units": "Unknown"})
+	CFVars.insert_one({"Variable": "Unknown",                                       "Var Name": "ta850",    "CF Standard Name": "Unknown",                                         "Units": "Unknown"})
+	CFVars.insert_one({"Variable": "Unknown",                                       "Var Name": "tashy1",   "CF Standard Name": "Unknown",                                         "Units": "Unknown"})
+	CFVars.insert_one({"Variable": "Unknown",                                       "Var Name": "wnd1000",  "CF Standard Name": "Unknown",                                         "Units": "Unknown"})
+	CFVars.insert_one({"Variable": "Unknown",                                       "Var Name": "wnd10m",   "CF Standard Name": "Unknown",                                         "Units": "Unknown"})
+	CFVars.insert_one({"Variable": "Unknown",                                       "Var Name": "wnd500",   "CF Standard Name": "Unknown",                                         "Units": "Unknown"})
+	CFVars.insert_one({"Variable": "Unknown",                                       "Var Name": "wnd700",   "CF Standard Name": "Unknown",                                         "Units": "Unknown"})
+	CFVars.insert_one({"Variable": "Unknown",                                       "Var Name": "wnd925",   "CF Standard Name": "Unknown",                                         "Units": "Unknown"})
+	CFVars.insert_one({"Variable": "Unknown",                                       "Var Name": "wndstrs",  "CF Standard Name": "Unknown",                                         "Units": "Unknown"})
 	#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
